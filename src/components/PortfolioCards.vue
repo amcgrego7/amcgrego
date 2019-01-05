@@ -38,7 +38,9 @@
               <p
                 class="headline text-xs-center ma-1"
                 v-bind:class="returnTotal >= 0 ? 'green--text' : 'red--text'"
-              >{{ returnTotal < 0 ? "($ " + Math.abs(returnTotal) + ")" : "$ " + returnTotal }}</p>
+              >
+              {{ returnTotal > 0 ? "$ " + returnTotal : "($ " + Math.abs(returnTotal) + ")" }}
+              </p>
             </v-flex>
           </v-card-title>
         </v-card>
@@ -46,8 +48,7 @@
 
       <v-flex xs12>
         <v-layout justify-left row wrap>
-          <!-- esline-disable-next-line -->
-          <v-flex lg6 sm12 v-for="stock in stocks">
+          <v-flex lg6 sm12 v-for="stock in stocks" :key="stock">
             <v-container>
               <v-card
                 v-if="stock.owners.length > 0"
@@ -119,7 +120,7 @@
                           </tr>
                         </thead>
                         <!-- esline-disable-next-line -->
-                        <tr v-for="owner in stock.owners">
+                        <tr v-for="owner in stock.owners" :key="owner">
                           <td>{{ owner.name}}</td>
                           <td>{{ (owner.percent * 100).toFixed(0) + '%'}}</td>
                           <td>{{ '$ ' + (owner.percent * stock.price ).toFixed(2)}}</td>
@@ -131,9 +132,9 @@
                     <v-card-text>
                       <v-card-text class="see-through">
                         <p class="title">Related News</p>
-                        <div v-for="news in stock.news">
+                        <div v-for="news in stock.news" :key="news">
                           <p class="caption mb-0">
-                            <a :href="news.url">{{ news.source }}</a>
+                            <a :href="news.url" target="blank">{{ news.source }}</a>
                             | {{ news.postedMsg }}
                           </p>
                           <p class="body-1">{{ news.headline }}</p>
