@@ -2,7 +2,7 @@
 <div>
   <vue-headful
       title="Cousins Portfolio"
-      description="A family adventure in stock investing"
+      description="A family adventure in investing"
   />
   <v-container>
     <v-layout wrap>
@@ -14,9 +14,14 @@
         <v-card color="blue-grey darken-2" class="white--text">
           <v-card-title primary-title>
             <v-flex>
-              <p class="headline text-xs-center ma-1">Total</p>
+              <p class="headline text-xs-center ma-1"
+              v-bind:class="screenToTextSize"
+              >Total</p>
+              
               <v-divider></v-divider>
-              <p class="headline text-xs-center ma-1">$ {{ portfolioTotal.toFixed(2) }}</p>
+              <p class="headline text-xs-center ma-1"
+              v-bind:class="screenToTextSize"
+              >$ {{ portfolioTotal.toFixed(2) }}</p>
             </v-flex>
           </v-card-title>
         </v-card>
@@ -26,9 +31,11 @@
         <v-card color="blue-grey darken-2" class="white--text">
           <v-card-title primary-title>
             <v-flex>
-              <p class="headline text-xs-center ma-1">Invested</p>
+              <p class="headline text-xs-center ma-1"
+              v-bind:class="screenToTextSize">Invested</p>
               <v-divider></v-divider>
-              <p class="headline text-xs-center ma-1">$ {{ investedTotal.toFixed(2) }}</p>
+              <p class="headline text-xs-center ma-1"
+              v-bind:class="screenToTextSize">$ {{ investedTotal.toFixed(2) }}</p>
             </v-flex>
           </v-card-title>
         </v-card>
@@ -38,11 +45,12 @@
         <v-card color="blue-grey darken-2" class="white--text">
           <v-card-title primary-title>
             <v-flex>
-              <p class="headline text-xs-center ma-1">Returns</p>
+              <p class="headline text-xs-center ma-1"
+              v-bind:class="screenToTextSize">Returns</p>
               <v-divider></v-divider>
               <p
                 class="headline text-xs-center ma-1"
-                v-bind:class="returnTotal >= 0 ? 'green--text' : 'red--text'"
+                v-bind:class="[returnTotal >= 0 ? 'green--text' : 'red--text', screenToTextSize]"
               >
               {{ returnTotal > 0 ? "$ " + returnTotal : "($ " + Math.abs(returnTotal) + ")" }}
               </p>
@@ -53,7 +61,7 @@
 
       <v-flex xs12>
         <v-layout justify-left row wrap>
-          <v-flex lg6 sm12 v-for="stock in stocks" :key="stock">
+          <v-flex lg6 sm12 v-for="stock in stocks">
             <v-container>
               <v-card
                 v-if="stock.owners.length > 0"
@@ -61,27 +69,27 @@
                 color="#19BDD1"
                 dark
               >
-                <v-card-title primary-title xs12 left class="pb-0">
-                  <v-flex class="headline text-xs-left" xs7>
-                    <v-layout row wrap>
-                      <v-flex xs4 md3>
+                <v-card-title primary-title left class="pb-0">
+                  <v-layout class="headline text-xs-left" wrap>
+                      <v-flex class="mr-2" style="flex:none">
                         <v-img
+                          
                           :src="`https://storage.googleapis.com/iex/api/logos/${ stock.symbol + '.png' }`"
                           height="60"
                           width="60"
-                          style="border-radius:4px"
+                          style="border-radius:4px;"
                         ></v-img>
                       </v-flex>
                       <v-flex>
-                        <p class="mb-2">{{ stock.company }}</p>
-                        <p class="title">{{ stock.symbol }}</p>
+                          <p class="mb-2">{{ stock.company }}</p>
+                          <p class="title">{{ stock.symbol }}</p>
                       </v-flex>
-                    </v-layout>
-                  </v-flex>
-
-                  <v-flex right class="headline text-xs-right">
+                  </v-layout>
+                  <v-flex xs12 sm6 class="headline text-xs-left text-sm-right">
                     <p class="mb-0">{{ '$ ' + stock.price }}</p>
+
                     <v-chip
+                      class="ml-0"
                       label
                       :color="stock.changePercent >= 0 ? 'green' : 'red'"
                       text-color="white"
@@ -125,7 +133,7 @@
                           </tr>
                         </thead>
                         <!-- esline-disable-next-line -->
-                        <tr v-for="owner in stock.owners" :key="owner">
+                        <tr v-for="owner in stock.owners">
                           <td>{{ owner.name}}</td>
                           <td>{{ (owner.percent * 100).toFixed(0) + '%'}}</td>
                           <td>{{ '$ ' + (owner.percent * stock.price ).toFixed(2)}}</td>
@@ -137,7 +145,7 @@
                     <v-card-text>
                       <v-card-text class="see-through">
                         <p class="title">Related News</p>
-                        <div v-for="news in stock.news" :key="news">
+                        <div v-for="news in stock.news">
                           <p class="caption mb-0">
                             <a :href="news.url" target="blank">{{ news.source }}</a>
                             | {{ news.postedMsg }}
@@ -196,6 +204,16 @@ export default {
   },
 
   computed: {
+    screenToTextSize () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 'smaller-headline'
+        // case 'sm': return '400px'
+        // case 'md': return '500px'
+        // case 'lg': return '600px'
+        // case 'xl': return '800px'
+      }
+    },
+
     returnTotal() {
       const total = this.portfolioTotal - this.investedTotal;
       return total.toFixed(2);
@@ -442,5 +460,9 @@ tr:hover {
 
 .see-through {
   background-color: rgba(0, 0, 0, 0.12);
+}
+
+.smaller-headline {
+  font-size: 18px !important; /* Find a way to make this less forced */
 }
 </style>
