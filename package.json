@@ -1,5 +1,5 @@
 {
-  "name": "amcgrego",
+  "name": "cousins-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "express": "^4.16.4",
     "vue": "^2.5.21",
     "vue-axios": "^2.1.4",
+    "vue-headful": "^2.0.1",
     "vuetify": "^1.4.0"
   },
   "devDependencies": {

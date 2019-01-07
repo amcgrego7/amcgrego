@@ -1,4 +1,4 @@
-# amcgrego
+# cousins portfolio
 
 ## Project setup
 ```

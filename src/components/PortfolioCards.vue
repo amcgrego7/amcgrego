@@ -1,4 +1,9 @@
 <template>
+<div>
+  <vue-headful
+      title="Cousins Portfolio"
+      description="A family adventure in stock investing"
+  />
   <v-container>
     <v-layout wrap>
       <v-flex mb-4 xs6 md3 pa-3>
@@ -154,6 +159,8 @@
       </v-flex>
     </v-layout>
   </v-container>
+
+</div>
 </template>
 
 <script>
