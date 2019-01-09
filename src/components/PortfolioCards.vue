@@ -1,79 +1,72 @@
 <template>
-<div>
-  <vue-headful
-      title="Cousins Portfolio"
-      description="A family adventure in investing"
-  />
-  <v-container>
-    <v-layout wrap>
-      <v-flex mb-4 xs6 md3 pa-3>
-        <v-combobox v-model="selCousins" :items="cousins" multiple label="Select a cousin"></v-combobox>
-      </v-flex>
+  <div>
+    <vue-headful title="Cousins Portfolio" description="A family adventure in investing"/>
+    <v-container>
+      <v-layout wrap>
+        <v-flex mb-4 xs6 md3 pa-3>
+          <v-combobox v-model="selCousins" :items="cousins" multiple label="Select a cousin"></v-combobox>
+        </v-flex>
 
-      <v-flex xs6 md3 pa-3>
-        <v-card color="blue-grey darken-2" class="white--text">
-          <v-card-title primary-title>
-            <v-flex>
-              <p class="headline text-xs-center ma-1"
-              v-bind:class="screenToTextSize"
-              >Total</p>
-              
-              <v-divider></v-divider>
-              <p class="headline text-xs-center ma-1"
-              v-bind:class="screenToTextSize"
-              >$ {{ portfolioTotal.toFixed(2) }}</p>
-            </v-flex>
-          </v-card-title>
-        </v-card>
-      </v-flex>
+        <v-flex xs6 md3 pa-3>
+          <v-card color="blue-grey darken-2" class="white--text">
+            <v-card-title primary-title class="pl-1 pr-1">
+              <v-flex>
+                <p class="headline text-xs-center ma-1" v-bind:class="screenToTextSize">Total</p>
 
-      <v-flex xs6 md3 pa-3>
-        <v-card color="blue-grey darken-2" class="white--text">
-          <v-card-title primary-title>
-            <v-flex>
-              <p class="headline text-xs-center ma-1"
-              v-bind:class="screenToTextSize">Invested</p>
-              <v-divider></v-divider>
-              <p class="headline text-xs-center ma-1"
-              v-bind:class="screenToTextSize">$ {{ investedTotal.toFixed(2) }}</p>
-            </v-flex>
-          </v-card-title>
-        </v-card>
-      </v-flex>
+                <v-divider></v-divider>
+                <p
+                  class="headline text-xs-center ma-1"
+                  v-bind:class="screenToTextSize"
+                >$ {{ portfolioTotal.toFixed(2) }}</p>
+              </v-flex>
+            </v-card-title>
+          </v-card>
+        </v-flex>
 
-      <v-flex xs6 md3 pa-3>
-        <v-card color="blue-grey darken-2" class="white--text">
-          <v-card-title primary-title>
-            <v-flex>
-              <p class="headline text-xs-center ma-1"
-              v-bind:class="screenToTextSize">Returns</p>
-              <v-divider></v-divider>
-              <p
-                class="headline text-xs-center ma-1"
-                v-bind:class="[returnTotal >= 0 ? 'green--text' : 'red--text', screenToTextSize]"
-              >
-              {{ returnTotal > 0 ? "$ " + returnTotal : "($ " + Math.abs(returnTotal) + ")" }}
-              </p>
-            </v-flex>
-          </v-card-title>
-        </v-card>
-      </v-flex>
+        <v-flex xs6 md3 pa-3>
+          <v-card color="blue-grey darken-2" class="white--text">
+            <v-card-title primary-title class="pl-1 pr-1">
+              <v-flex>
+                <p class="headline text-xs-center ma-1" v-bind:class="screenToTextSize">Invested</p>
+                <v-divider></v-divider>
+                <p
+                  class="headline text-xs-center ma-1"
+                  v-bind:class="screenToTextSize"
+                >$ {{ investedTotal.toFixed(2) }}</p>
+              </v-flex>
+            </v-card-title>
+          </v-card>
+        </v-flex>
 
-      <v-flex xs12>
-        <v-layout justify-left row wrap>
-          <v-flex lg6 sm12 v-for="stock in stocks">
-            <v-container>
-              <v-card
-                v-if="stock.owners.length > 0"
-                class="mx-auto text-xs-left"
-                color="#19BDD1"
-                dark
-              >
-                <v-card-title primary-title left class="pb-0">
-                  <v-layout class="headline text-xs-left" wrap>
+        <v-flex xs6 md3 pa-3>
+          <v-card color="blue-grey darken-2" class="white--text">
+            <v-card-title primary-title class="pl-1 pr-1">
+              <v-flex>
+                <p class="headline text-xs-center ma-1" v-bind:class="screenToTextSize">Returns</p>
+                <v-divider></v-divider>
+                <p
+                  class="headline text-xs-center ma-1"
+                  v-bind:class="[returnTotal >= 0 ? 'green--text' : 'red--text', screenToTextSize]"
+                >{{ returnTotal > 0 ? "$ " + returnTotal : "($ " + Math.abs(returnTotal) + ")" }}</p>
+              </v-flex>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+
+        <v-flex xs12>
+          <v-layout justify-left row wrap>
+            <v-flex lg6 sm12 v-for="stock in stocks">
+              <v-container>
+                <v-card
+                  v-if="stock.owners.length > 0"
+                  class="mx-auto text-xs-left"
+                  color="#19BDD1"
+                  dark
+                >
+                  <v-card-title primary-title left class="pb-0">
+                    <v-layout class="headline text-xs-left" wrap>
                       <v-flex class="mr-2" style="flex:none">
                         <v-img
-                          
                           :src="`https://storage.googleapis.com/iex/api/logos/${ stock.symbol + '.png' }`"
                           height="60"
                           width="60"
@@ -81,94 +74,93 @@
                         ></v-img>
                       </v-flex>
                       <v-flex>
-                          <p class="mb-2">{{ stock.company }}</p>
-                          <p class="title">{{ stock.symbol }}</p>
+                        <p class="mb-2">{{ stock.company }}</p>
+                        <p class="title">{{ stock.symbol }}</p>
                       </v-flex>
-                  </v-layout>
-                  <v-flex xs12 sm6 class="headline text-xs-left text-sm-right">
-                    <p class="mb-0">{{ '$ ' + stock.price }}</p>
+                    </v-layout>
+                    <v-flex xs12 sm5 class="headline text-xs-left text-sm-right">
+                      <p class="mb-0">{{ '$ ' + stock.price }}</p>
 
-                    <v-chip
-                      class="ml-0"
-                      label
-                      :color="stock.changePercent >= 0 ? 'green' : 'red'"
-                      text-color="white"
-                    >
-                      <v-icon
-                        left
-                        large
-                        class="pa-0 mr-0"
-                      >arrow_drop_{{ stock.changePercent >= 0 ? "up" : "down" }}</v-icon>
-                      {{ stock.changePercent >= 0 ? "Up" : "Down" }}
-                      {{ (stock.changePercent * 100).toFixed(2) }}% today
-                    </v-chip>
-                  </v-flex>
-                </v-card-title>
+                      <v-chip
+                        class="ml-0"
+                        label
+                        :color="stock.changePercent >= 0 ? 'green' : 'red'"
+                        text-color="white"
+                      >
+                        <v-icon
+                          left
+                          large
+                          class="pa-0 mr-0"
+                        >arrow_drop_{{ stock.changePercent >= 0 ? "up" : "down" }}</v-icon>
+                        {{ stock.changePercent >= 0 ? "Up" : "Down" }}
+                        {{ (stock.changePercent * 100).toFixed(2) }}% today
+                      </v-chip>
+                    </v-flex>
+                  </v-card-title>
 
-                <v-layout row wrap>
-                  <v-flex xs12 md7>
-                    <v-card-text pa-0>
-                      <v-sheet color="rgba(0, 0, 0, .12)">
-                        <div color="white" class="caption text-uppercase pl-3 pt-3">3 Months</div>
-                        <v-sparkline
-                          :value="stock.qtrValues"
-                          color="rgba(255, 255, 255, .7)"
-                          height="100"
-                          padding="24"
-                          stroke-linecap="round"
-                          smooth
-                        >
-                          <template slot="label" slot-scope="item">$ {{ item.value }}</template>
-                        </v-sparkline>
-                      </v-sheet>
-                    </v-card-text>
-
-                    <v-card-text>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Owner</th>
-                            <th>%</th>
-                            <th>$</th>
-                          </tr>
-                        </thead>
-                        <!-- esline-disable-next-line -->
-                        <tr v-for="owner in stock.owners">
-                          <td>{{ owner.name}}</td>
-                          <td>{{ (owner.percent * 100).toFixed(0) + '%'}}</td>
-                          <td>{{ '$ ' + (owner.percent * stock.price ).toFixed(2)}}</td>
-                        </tr>
-                      </table>
-                    </v-card-text>
-                  </v-flex>
-                  <v-flex xs12 md5>
-                    <v-card-text>
-                      <v-card-text class="see-through">
-                        <p class="title">Related News</p>
-                        <div v-for="news in stock.news">
-                          <p class="caption mb-0">
-                            <a :href="news.url" target="blank">{{ news.source }}</a>
-                            | {{ news.postedMsg }}
-                          </p>
-                          <p class="body-1">{{ news.headline }}</p>
-                        </div>
+                  <v-layout row wrap>
+                    <v-flex xs12 md7>
+                      <v-card-text pa-0>
+                        <v-sheet color="rgba(0, 0, 0, .12)">
+                          <div color="white" class="caption text-uppercase pl-3 pt-3">3 Months</div>
+                          <v-sparkline
+                            :value="stock.qtrValues"
+                            color="rgba(255, 255, 255, .7)"
+                            height="100"
+                            padding="24"
+                            stroke-linecap="round"
+                            smooth
+                          >
+                            <template slot="label" slot-scope="item">$ {{ item.value }}</template>
+                          </v-sparkline>
+                        </v-sheet>
                       </v-card-text>
-                    </v-card-text>
-                  </v-flex>
-                </v-layout>
 
-                <!-- <v-card-actions class="justify-center">
+                      <v-card-text>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Owner</th>
+                              <th>%</th>
+                              <th>$</th>
+                            </tr>
+                          </thead>
+                          <!-- esline-disable-next-line -->
+                          <tr v-for="owner in stock.owners">
+                            <td>{{ owner.name}}</td>
+                            <td>{{ (owner.percent * 100).toFixed(0) + '%'}}</td>
+                            <td>{{ '$ ' + (owner.percent * stock.price ).toFixed(2)}}</td>
+                          </tr>
+                        </table>
+                      </v-card-text>
+                    </v-flex>
+                    <v-flex xs12 md5>
+                      <v-card-text>
+                        <v-card-text class="see-through">
+                          <p class="title">Related News</p>
+                          <div v-for="news in stock.news">
+                            <p class="caption mb-0">
+                              <a :href="news.url" target="blank">{{ news.source }}</a>
+                              | {{ news.postedMsg }}
+                            </p>
+                            <p class="body-1">{{ news.headline }}</p>
+                          </div>
+                        </v-card-text>
+                      </v-card-text>
+                    </v-flex>
+                  </v-layout>
+
+                  <!-- <v-card-actions class="justify-center">
                   <v-btn block flat>More Details</v-btn>
-                </v-card-actions>-->
-              </v-card>
-            </v-container>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
-  </v-container>
-
-</div>
+                  </v-card-actions>-->
+                </v-card>
+              </v-container>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -204,9 +196,10 @@ export default {
   },
 
   computed: {
-    screenToTextSize () {
+    screenToTextSize() {
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return 'smaller-headline'
+        case "xs":
+          return "smaller-headline";
         // case 'sm': return '400px'
         // case 'md': return '500px'
         // case 'lg': return '600px'
@@ -463,6 +456,6 @@ tr:hover {
 }
 
 .smaller-headline {
-  font-size: 18px !important; /* Find a way to make this less forced */
+  font-size: 16px !important; /* Find a way to make this less forced */
 }
 </style>
