@@ -9,7 +9,7 @@
           <p
             class="headline text-xs-center ma-1"
             v-bind:class="[kpiColor, dynamicheadline]"
-          >{{ value > 0 ? "$ " + value.toFixed(2) : "($ " + Math.abs(value).toFixed(2) + ")" }}</p>
+          >{{ tweenedNumber > 0 ? "$ " + tweenedNumber.toFixed(2) : "($ " + Math.abs(tweenedNumber).toFixed(2) + ")" }}</p>
         </v-flex>
       </v-card-title>
     </v-card>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { TweenLite } from 'gsap'
+
 export default {
   props: ["name", "value", "color", "screensize"],
   methods: {},
@@ -31,17 +33,21 @@ export default {
       }
 
       return colorClass;
-    }, 
-    dynamicheadline() {
-      switch(this.screensize) {
-        case("xs"): return "smaller-headline"
-      }
     }
   },
 
   data() {
-    return {};
+    return {
+      tweenedNumber : 0
+    };
+  },
+
+  watch: {
+    value: function(newValue) {
+      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
+    }
   }
+
 };
 </script>
 
