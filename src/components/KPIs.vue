@@ -33,6 +33,14 @@ export default {
       }
 
       return colorClass;
+    },
+    dynamicheadline() {
+      let headClass = "";
+      switch(this.screensize) {
+        case("xs"): 
+        headClass = "smaller-headline"
+      }
+      return headClass;
     }
   },
 
