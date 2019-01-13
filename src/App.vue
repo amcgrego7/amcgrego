@@ -9,18 +9,18 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <portfolio-cards/>
+      <the-cousins-portfolio/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import PortfolioCards from './components/PortfolioCards'
+import TheCousinsPortfolio from './components/TheCousinsPortfolio'
 
 export default {
   name: 'App',
   components: {
-    PortfolioCards
+    TheCousinsPortfolio
   },
   data () {
     return {
