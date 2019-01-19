@@ -1,6 +1,6 @@
 <template>
-  <div>
     <v-container>
+
       <v-layout wrap>
 
         <v-flex mb-4 xs6 md3 pa-3>
@@ -21,14 +21,12 @@
 
       </v-layout>
     </v-container>
-
-  </div>
 </template>
 
 <script>
 
-import kpis from "./KPIs"
-import stockCard from "./StockCard"
+import kpis from "../components/PortfolioKpis"
+import stockCard from "../components/PortfolioStockCard"
 
 export default {
   components: {
