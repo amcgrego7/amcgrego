@@ -1,32 +1,28 @@
 <template>
-    <v-container>
+  <v-container>
+    <v-layout wrap>
+      <v-flex mb-4 xs6 md3 pa-3>
+        <v-combobox v-model="selCousins" :items="cousins" multiple label="Select a cousin"></v-combobox>
+      </v-flex>
 
-      <v-layout wrap>
+      <kpis name="Total" :value="portfolioTotal" :screensize="screensize"></kpis>
+      <kpis name="Invested" :value="investedTotal" :screensize="screensize"></kpis>
+      <kpis name="Return" :value="returnTotal" :screensize="screensize" :color="true"></kpis>
 
-        <v-flex mb-4 xs6 md3 pa-3>
-          <v-combobox v-model="selCousins" :items="cousins" multiple label="Select a cousin"></v-combobox>
-        </v-flex>
-
-        <kpis name="Total" :value="portfolioTotal" :screensize="screensize"></kpis>
-        <kpis name="Invested" :value="investedTotal" :screensize="screensize"></kpis>
-        <kpis name="Return" :value="returnTotal" :screensize="screensize" :color="true"></kpis>
-
-        <v-flex xs12>
-          <v-layout justify-left row wrap>
-            <v-flex lg6 sm12 v-for="stock in stocks">
-              <stock-card :stock="stock"></stock-card>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-
-      </v-layout>
-    </v-container>
+      <v-flex xs12>
+        <v-layout justify-left row wrap>
+          <v-flex lg6 sm12 v-for="stock in stocks">
+            <stock-card :stock="stock"></stock-card>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-
-import kpis from "../components/PortfolioKpis"
-import stockCard from "../components/PortfolioStockCard"
+import kpis from "../components/PortfolioKpis";
+import stockCard from "../components/PortfolioStockCard";
 
 export default {
   components: {
@@ -65,7 +61,7 @@ export default {
 
   computed: {
     screensize() {
-      return this.$vuetify.breakpoint.name
+      return this.$vuetify.breakpoint.name;
     },
 
     returnTotal() {
@@ -109,39 +105,6 @@ export default {
       selCousins: [], // Updated by filter selection
       cousins: ["Levi", "Harrison", "Hannah", "Evie"], // List all cousins
       allStocks: [
-        {
-          company: "Microsoft",
-          symbol: "MSFT",
-          news: [],
-          qtrValues: [],
-          purchases: [
-            {
-              date: "20181219",
-              shares: 1,
-              price: 103.67
-            }
-          ],
-          price: 0,
-          changePercent: null,
-          owners: [
-            {
-              name: "Levi",
-              percent: 0.25
-            },
-            {
-              name: "Harrison",
-              percent: 0.25
-            },
-            {
-              name: "Hannah",
-              percent: 0.25
-            },
-            {
-              name: "Evie",
-              percent: 0.25
-            }
-          ]
-        },
         {
           company: "Facebook",
           symbol: "FB",
@@ -197,6 +160,39 @@ export default {
               percent: 0.25
             }
           ]
+        },
+        {
+          company: "Microsoft",
+          symbol: "MSFT",
+          news: [],
+          qtrValues: [],
+          purchases: [
+            {
+              date: "20181219",
+              shares: 1,
+              price: 103.67
+            }
+          ],
+          price: 0,
+          changePercent: null,
+          owners: [
+            {
+              name: "Levi",
+              percent: 0.25
+            },
+            {
+              name: "Harrison",
+              percent: 0.25
+            },
+            {
+              name: "Hannah",
+              percent: 0.25
+            },
+            {
+              name: "Evie",
+              percent: 0.25
+            }
+          ]
         }
       ]
     };
@@ -211,7 +207,7 @@ export default {
       .get(
         "https://api.iextrading.com/1.0/stock/market/batch?symbols=" +
           symbols.join(",") +
-          "&types=quote,news,chart&range=3m&last=3" 
+          "&types=quote,news,chart&range=3m&last=3"
       )
       .then(response => {
         // Iterate through current stock information and

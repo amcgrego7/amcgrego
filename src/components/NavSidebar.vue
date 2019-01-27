@@ -1,5 +1,9 @@
 <template>
-  <v-navigation-drawer :mini-variant.sync="mini" v-model="drawer" fixed clipped app>
+  <v-navigation-drawer 
+  mini-variant
+  v-model="drawer"
+  @update:mini-variant="false"
+  fixed clipped app>
     <v-toolbar flat class="transparent">
       <v-list class="pa-0">
         <v-list-tile avatar @click.stop="mini = true">
@@ -21,7 +25,7 @@
           <router-link :to="item.path">
             <v-tooltip right :disabled="isMobile">
               <span>{{item.desc}}</span>
-              <v-icon slot="activator">{{ item.icon }}</v-icon>
+              <v-icon pt-4 large slot="activator">{{ item.icon }}</v-icon>
             </v-tooltip>
           </router-link>
         </v-list-tile-action>
@@ -35,11 +39,25 @@
 </template>
 
 <script>
+
+
 export default {
+  computed: {
+
+      // Show and hide the sidenav via drawer state in vuex
+      drawer : {
+        get() {
+          return this.$store.state.drawer
+        },
+        set(boolean) {
+          this.$store.commit('updateDrawer', boolean)
+        }
+      }  
+  },
+
   data() {
     return {
       isMobile: ["xs", "sm"].includes(this.$vuetify.breakpoint.name), // TODO: Don't use size, use device type
-      drawer: true,
       items: [
         { path: "home", icon: "home", desc: "Home" },
         {
@@ -53,3 +71,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>
