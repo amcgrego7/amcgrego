@@ -1,6 +1,6 @@
 <template>
   <v-flex xs6 md3 pa-3>
-    <v-card color="blue-grey darken-2" class="white--text">
+    <v-card :ref="name" color="blue-grey darken-2" class="white--text">
       <v-card-title primary-title class="pl-1 pr-1">
         <v-flex>
           <p class="headline text-xs-center ma-1"
@@ -46,13 +46,15 @@ export default {
 
   data() {
     return {
-      tweenedNumber : 0
+      tweenedNumber : 0,
+      // tweenLite : new tweenLite(0)
     };
   },
 
   watch: {
-    value: function(newValue) {
-      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
+    value:  {
+      immediate: true,
+      handler : function(newValue) { TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue })},
     }
   }
 

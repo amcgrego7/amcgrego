@@ -11,7 +11,7 @@
 
       <v-flex xs12>
         <v-layout justify-left row wrap>
-          <v-flex lg6 sm12 v-for="stock in stocks">
+          <v-flex lg6 sm12 v-for="(stock, index) in stocks" :key="index">
             <stock-card :stock="stock"></stock-card>
           </v-flex>
         </v-layout>
@@ -75,8 +75,7 @@ export default {
 
       // If no cousin filter applied, return all stocks
       if (!cousins.length) {
-        this.portfolioTotal = this.portfolioSumProduct(stocks);
-        this.investedTotal = this.investedSumProduct(stocks);
+
         return stocks;
 
         // Otherwise apply filter for cousin
@@ -91,17 +90,18 @@ export default {
           return stock;
         });
 
-        // TODO: Don't update these on computed...
-        this.portfolioTotal = this.portfolioSumProduct(filterStocks);
-        this.investedTotal = this.investedSumProduct(filterStocks);
         return filterStocks;
       }
+    },
+    portfolioTotal() {
+      return this.portfolioSumProduct(this.stocks);
+    },
+    investedTotal() {
+      return this.investedSumProduct(this.stocks);
     }
   },
   data() {
     return {
-      portfolioTotal: 0, // Total portfolio value
-      investedTotal: 0, // Total investment re-caculated after cousins filter
       selCousins: [], // Updated by filter selection
       cousins: ["Levi", "Harrison", "Hannah", "Evie"], // List all cousins
       allStocks: [
@@ -194,10 +194,11 @@ export default {
             }
           ]
         }
-      ]
+      ],
     };
   },
-  mounted() {
+
+  created() {
     const vm = this;
     const symbols = vm.allStocks.map(d => {
       return d.symbol;
@@ -220,6 +221,8 @@ export default {
 
           // Latest price of stock
           _stock["price"] = response.data[symbol].quote.latestPrice;
+
+          // _stock["purchases"][0].price = 100;
 
           // Change % between current day and prior day
           _stock["changePercent"] = response.data[symbol].quote.changePercent;
@@ -276,6 +279,7 @@ export default {
           });
         });
       });
-  }
+  },
+
 };
 </script>

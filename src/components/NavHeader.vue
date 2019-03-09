@@ -2,9 +2,9 @@
     <v-toolbar app clipped-left>
       <v-toolbar-side-icon @click.stop="updateStoreDrawer(!drawer)"></v-toolbar-side-icon>
 
-      <v-toolbar-title class="headline text-uppercase">
+      <v-toolbar-title class="headline">
         <span class="font-weight-light">THE</span>
-        <span>COUSINS</span>
+        <span>MCGREGOR</span>
         <span class="font-weight-light">PORTFOLIO</span>
       </v-toolbar-title>
     </v-toolbar>

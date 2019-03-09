@@ -2,6 +2,9 @@
 import Vue from 'vue'
 import store from "./store"
 
+// Support for IE
+import 'babel-polyfill';
+
 // Axios for REST APIs
 import axios from 'axios'
 import VueAxios from 'vue-axios'
