@@ -3,9 +3,8 @@
       <v-toolbar-side-icon @click.stop="updateStoreDrawer(!drawer)"></v-toolbar-side-icon>
 
       <v-toolbar-title class="headline">
-        <span class="font-weight-light">THE</span>
+        <span class="font-weight-light">ANDREW</span>
         <span>MCGREGOR</span>
-        <span class="font-weight-light">PORTFOLIO</span>
       </v-toolbar-title>
     </v-toolbar>
 </template>

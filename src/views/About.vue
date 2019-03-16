@@ -27,7 +27,7 @@
         >I am a business analytics consultant at Booz Allen Hamiliton. I love tackling data wrangling challenges and building web applications!</p>
         <p
           mt-3
-        >I began building this website knowing it would encourage me to dive into the latest trends in web-development and analytics. As a result of this exploration and my experiences as a analyics consultant, I've become equipped with skills in:
+        >I began building this website knowing it would encourage me to dive into the latest trends in web-development and analytics. A result of hobby projects, personal development, and on the job training, I've become comfortable with...
         </p>
         <p>
         <ul>
@@ -40,11 +40,13 @@
       </v-flex>
 
       <v-flex xs12>
+          <h1 class="headline text-uppercase">A Brief History</h1>
           <aboutTimeline/>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
+
 
 <script>
 

@@ -37,8 +37,8 @@ export default {
       {
         color: "pink",
         year: "2015",
-        title: "A Love for the Game",
-        description: "After years of playing and coaching lacrosse at the collegiate level, I was passionate about staying involved with the team. I reached out the CNU athletic director about providing live commentary for the home game contests. Five years later, my co-commentator and I remain the voices of CNU lacrosse... and I love every minute of it!"
+        title: "A Love for the game",
+        description: "After years of playing and coaching lacrosse at the collegiate level, I was passionate about staying involved with the team. I reached out to the CNU athletic director about providing live commentary for the home game contests. Five years later, my co-commentator and I remain the voices of CNU lacrosse... and I love every minute of it!"
       },
       {
         color: "amber",
@@ -50,13 +50,13 @@ export default {
         color: "cyan",
         year: "2017",
         title: "Values in Practice",
-        description: "..."
+        description: "Booz Allen presented me with the highest honor as an employee, the Values in Practice Award. It's handed out to a select few people across the firm every year who display Booz Allen's purpose and values in their client work and who have had a postive influence on others within the company. The award was an will always be one of my proudest accomplishments. A validation of my contributions to date, but also motivation to keep pressing forward."
       },
       {
         color: "orange",
         year: "2018",
         title: "The student becomes the professor",
-        description: "..."
+        description: "After finishing my Masters in Business Analytics at Indiana University, I realized I wanted to stay engaged with higher education. I had maintained a solid relationship with an analytics professor from my undergrad years at CNU and he asked me to take the reins on teaching a Business Applications course. Since then, I've enjoyed mentoring students and helping them make the transition from student to a impact player in the workforce."
       }
     ]
   })
