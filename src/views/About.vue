@@ -6,6 +6,8 @@
           :src="require('../assets/headshot-water.jpg')"
           style="border-radius:3px"
           aspect-ratio="1"
+          max-height="400"
+          max-width="400"
         ></v-img>
       </v-flex>
       <v-flex xs12 md6 lg9>

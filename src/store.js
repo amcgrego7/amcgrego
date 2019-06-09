@@ -1,12 +1,30 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
 
 // root state object.
 // each Vuex instance is just a single state tree.
 const state = {
-  drawer: true
-}
+  drawer: true,
+  apps: [
+    { 
+      include: false,
+      path: 'home', 
+      icon: 'home',
+      desc: 'Home',
+      title: 'Home'
+    },
+    {
+      includeAsTile: true,
+      date: new Date('2019-01-02').toLocaleDateString(),
+      path: 'cousins-portfolio',
+      icon: 'trending_up',
+      desc: 'A family venture in stock investing',
+      title: 'The Cousins Portfolio',
+      img: 'cousins-portfolio-thumbnail.png'
+    }
+  ]
+};
 
 // mutations are operations that actually mutates the state.
 // each mutation handler gets the entire state tree as the
@@ -17,16 +35,18 @@ const mutations = {
   updateDrawer(state, boolean) {
     state.drawer = boolean;
   }
-}
+};
 
 // actions are functions that cause side effects and can involve
 // asynchronous operations.
-const actions = {
-}
+const actions = {};
 
 // getters are functions
 const getters = {
-}
+  tiles: state => {
+    return state.apps.filter(app => app.includeAsTile)
+  }  
+};
 
 // A Vuex instance is created by combining the state, mutations, actions,
 // and getters.
@@ -35,4 +55,4 @@ export default new Vuex.Store({
   getters,
   actions,
   mutations
-})
+});

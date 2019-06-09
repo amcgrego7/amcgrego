@@ -20,18 +20,18 @@
     <v-list class="pt-0" dense>
       <v-divider></v-divider>
 
-      <v-list-tile v-for="item in items" :key="item.title" @click.stop="mini = true">
+      <v-list-tile v-for="app in apps" :key="app.title" @click.stop="mini = true">
         <v-list-tile-action>
-          <router-link :to="item.path">
+          <router-link :to="app.path">
             <v-tooltip right :disabled="isMobile">
-              <span>{{item.desc}}</span>
-              <v-icon pt-4 large slot="activator">{{ item.icon }}</v-icon>
+              <span>{{app.desc}}</span>
+              <v-icon pt-4 large slot="activator">{{ app.icon }}</v-icon>
             </v-tooltip>
           </router-link>
         </v-list-tile-action>
 
         <v-list-tile-content>
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          <v-list-tile-title>{{ app.title }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -40,9 +40,13 @@
 
 <script>
 
+import { mapState } from 'vuex';
 
 export default {
   computed: {
+    ...mapState([
+      'apps'
+    ]),    
 
       // Show and hide the sidenav via drawer state in vuex
       drawer : {
@@ -58,14 +62,14 @@ export default {
   data() {
     return {
       isMobile: ["xs", "sm"].includes(this.$vuetify.breakpoint.name), // TODO: Don't use size, use device type
-      items: [
-        { path: "home", icon: "home", desc: "Home" },
-        {
-          path: "cousins-portfolio",
-          icon: "trending_up",
-          desc: "A family venture in stock investing"
-        }
-      ],
+      // apps: [
+      //   { path: "home", icon: "home", desc: "Home" },
+      //   {
+      //     path: "cousins-portfolio",
+      //     icon: "trending_up",
+      //     desc: "A family venture in stock investing"
+      //   }
+      // ],
       mini: true
     };
   }
