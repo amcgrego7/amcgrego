@@ -16,12 +16,21 @@ const state = {
     },
     {
       includeAsTile: true,
-      date: new Date('2019-01-02').toLocaleDateString(),
+      date: new Date('2019/01/02').toDateString(),
       path: 'cousins-portfolio',
       icon: 'trending_up',
       desc: 'A family venture in stock investing',
       title: 'The Cousins Portfolio',
       img: 'cousins-portfolio-thumbnail.png'
+    },
+    {
+      includeAsTile: true,
+      date: new Date('2019/07/28').toDateString(),
+      path: 'optimization',
+      icon: 'time_to_leave',
+      desc: 'An evolutionary algorithm and basic JavaScript',
+      title: 'Optimization',
+      img: 'optimization-thumbnail.png'
     }
   ]
 };

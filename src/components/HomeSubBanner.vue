@@ -2,22 +2,33 @@
   <v-img
     :src="getPic(tile.img)"
     height="100%"
-    gradient="rgba(0, 0, 0, .4), rgba(0, 0, 0, .9)"
+    gradient="rgba(0, 0, 0, .1), rgba(0, 0, 0, .9)"
   >
     <v-layout v-if="!tile.prominent" fill-height wrap text-xs-right ma-0>
       <v-flex xs12>
+
         <v-chip
           label
-          class="mx-0 mb-2 text-uppercase"
-          color="grey darken-3"
+          class="my-1 text-uppercase title"
+          color="grey darken-1"
+          text-color="white"
+          medium
+          @click.stop
+        >
+          {{ tile.title }}
+        </v-chip>
+
+        <!-- <h3 class="title font-weight-bold mb-2">{{ tile.title }}</h3> -->
+        <v-chip
+          label
+          class="my-0"
+          color="grey darken-1"
           text-color="white"
           small
           @click.stop
-        >{{ tile.desc }}</v-chip>
-        <h3 class="title font-weight-bold mb-2">{{ tile.title }}</h3>
-        <div class="caption">
-          {{ tile.date }}
-        </div>
+        >{{ tile.desc }}
+      
+        </v-chip>
       </v-flex>
       <v-flex align-self-end>
         <!-- <v-chip class="text-uppercase ma-0" color="primary" label small @click.stop>View</v-chip> -->
@@ -52,4 +63,5 @@ export default {
 .v-image__image {
   transition: 0.3s linear;
 }
+
 </style>

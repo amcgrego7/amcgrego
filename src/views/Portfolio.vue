@@ -134,34 +134,6 @@ export default {
           ]
         },
         {
-          company: "Bank of America",
-          symbol: "BAC",
-          news: [],
-          changePercent: null,
-          purchases: [
-            {
-              date: "20180917",
-              shares: 1,
-              price: 30.85
-            }
-          ],
-          price: 0,
-          owners: [
-            {
-              name: "Levi",
-              percent: 0.5
-            },
-            {
-              name: "Harrison",
-              percent: 0.25
-            },
-            {
-              name: "Hannah",
-              percent: 0.25
-            }
-          ]
-        },
-        {
           company: "Microsoft",
           symbol: "MSFT",
           news: [],
@@ -193,7 +165,37 @@ export default {
               percent: 0.25
             }
           ]
-        }
+        },
+
+{
+          company: "Bank of America",
+          symbol: "BAC",
+          news: [],
+          changePercent: null,
+          purchases: [
+            {
+              date: "20180917",
+              shares: 1,
+              price: 30.85
+            }
+          ],
+          price: 0,
+          owners: [
+            {
+              name: "Levi",
+              percent: 0.5
+            },
+            {
+              name: "Harrison",
+              percent: 0.25
+            },
+            {
+              name: "Hannah",
+              percent: 0.25
+            }
+          ]
+        },
+
       ],
     };
   },
@@ -206,7 +208,9 @@ export default {
 
     vm.axios
       .get(
-        "https://api.iextrading.com/1.0/stock/market/batch?symbols=" +
+        "https://cloud.iexapis.com/stable/stock/market/batch" + 
+        "?token=pk_044d4ef414aa4be7a4c1a87fea56c926" +
+        "&symbols=" +
           symbols.join(",") +
           "&types=quote,news,chart&range=3m&last=3"
       )

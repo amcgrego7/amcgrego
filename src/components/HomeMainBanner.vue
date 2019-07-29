@@ -3,7 +3,7 @@
     class="grey lighten-2"
     height="400"
     width="100%"
-    gradient="to top right, rgb(48,48,48, .7), rgb(48,48,48, .01)"
+    gradient="to top right, rgb(245,245,245, .7), rgb(0,0,0, .1)"
     :src="require('@/assets/switzerland.jpg')"
   >
     <v-layout fill-height align-center pa-3>

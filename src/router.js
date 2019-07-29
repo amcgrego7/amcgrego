@@ -24,6 +24,11 @@ export default new Router({
       path: '/cousins-portfolio',
       name: 'cousins-portfolio',
       component: () => import(/* webpackChunkName: "about" */ './views/Portfolio.vue')
+    },
+    {
+      path: '/optimization',
+      name: 'optimization',
+      component: () => import(/* webpackChunkName: "about" */ './views/Optimization.vue')
     }
   ]
 })

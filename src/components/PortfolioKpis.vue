@@ -1,6 +1,6 @@
 <template>
   <v-flex xs6 md3 pa-3>
-    <v-card :ref="name" color="blue-grey darken-2" class="white--text">
+    <v-card :ref="name">
       <v-card-title primary-title class="pl-1 pr-1">
         <v-flex>
           <p class="headline text-xs-center ma-1"
