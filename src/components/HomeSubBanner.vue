@@ -17,8 +17,7 @@
         >
           {{ tile.title }}
         </v-chip>
-
-        <!-- <h3 class="title font-weight-bold mb-2">{{ tile.title }}</h3> -->
+        <br>
         <v-chip
           label
           class="my-0"
