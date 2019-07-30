@@ -8,7 +8,7 @@ export default (model) => {
   // var chromosomes = model.chromosomes;
   // var space = 20;
   // var mutationRate = 0.5;
-  beginAlgorithm()
+  return beginAlgorithm()
   
   function beginAlgorithm() {
     //this is to track how long the algorithm will take
@@ -75,7 +75,7 @@ export default (model) => {
         }
       }
     }
-    //console.log(globalOptimum)
+    return localOptimum
 
   
     //this is to track how long the algorithm took
