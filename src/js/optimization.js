@@ -66,6 +66,7 @@ export default (model) => {
         globalOptimum = localOptimum[inputs.length];
         totalGenerations++; //keep that ticker going up!
         if (maxGenerations - totalGenerations < 2000) { //if the #rows to post to the DOM is large, it slows things down so I capped it at 2000
+
           // $("#outputReport tbody").prepend("<tr><td>" + totalGenerations + "</td><td>" + localOptimum.slice(0, -2) + "</td><td>" + localOptimum[(inputs.length + 1)] + "</td><td>" + localOptimum[inputs.length] + "</td></tr>")
         }
       } else {
