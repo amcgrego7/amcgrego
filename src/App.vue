@@ -1,31 +1,30 @@
 <template>
-  <v-app dark
->
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span class="font-weight-light">THE</span>
-        <span>COUSINS</span>
-        <span class="font-weight-light">PORTFOLIO</span>
-      </v-toolbar-title>
-    </v-toolbar>
+  <v-app>
+
+    <nav-header/>
+
+    <nav-sidebar/>
+    
     <v-content>
-      <the-cousins-portfolio/>
+      <router-view/>
     </v-content>
+
   </v-app>
 </template>
 
 <script>
-import TheCousinsPortfolio from './components/TheCousinsPortfolio'
+
+import NavHeader from "./components/NavHeader"
+import NavSidebar from "./components/NavSidebar"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    TheCousinsPortfolio
+    NavHeader,
+    NavSidebar
   },
-  data () {
-    return {
-      //
-    }
+  data() {
+    return {}
   }
-}
+};
 </script>
