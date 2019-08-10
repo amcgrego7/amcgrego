@@ -31,6 +31,15 @@ const state = {
       desc: 'An evolutionary algorithm and basic JavaScript',
       title: 'Optimization',
       img: 'optimization-thumbnail.png'
+    },
+    {
+      includeAsTile: true,
+      date: new Date('2019/07/28').toDateString(),
+      path: 'steak-analysis',
+      icon: 'restaurant_menu',
+      desc: "Americans and Steak",
+      title: 'Steak Analysis',
+      img: 'optimization-thumbnail.png'
     }
   ]
 };

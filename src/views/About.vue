@@ -26,14 +26,14 @@
         </h1>
         <v-divider/>
         <p
-        >I am a business analytics consultant at Booz Allen Hamiliton. I love tackling data wrangling challenges and building web applications!</p>
+        >I am a business analytics consultant at Booz Allen Hamilton. I love tackling data wrangling challenges and building web applications!</p>
         <p
           mt-3
         >I began building this website knowing it would encourage me to dive into the latest trends in web-development and analytics. A result of hobby projects, personal development, and on the job training, I've become comfortable with...
         </p>
         <p>
         <ul>
-          <li>Web-development: Node.js, JavaScript, Vue.js, d3.js, Python Django and Bootstrap </li>
+          <li>Web-development: Node.js, JavaScript, Vue.js, d3.js, Python, Django and Bootstrap </li>
           <li>Machine Learning: TensorFlow, SciKit Learn, Reinforcement Learning and Optimization</li>
           <li>Data Analytics: Tableau, PostgreSQL, Excel and Access</li>
         </ul>

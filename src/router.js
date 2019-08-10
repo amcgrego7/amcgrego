@@ -29,6 +29,11 @@ export default new Router({
       path: '/optimization',
       name: 'optimization',
       component: () => import(/* webpackChunkName: "about" */ './views/Optimization.vue')
+    },
+    {
+      path: '/steak-analysis',
+      name: 'steak-analysis',
+      component: () => import(/* webpackChunkName: "about" */ './views/SteakAnalysis.vue')
     }
   ]
 })
