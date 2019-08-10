@@ -1,187 +1,166 @@
-
-
 /* global d3, topojson */
 
 export default (us, data, steakScale) => {
+  d3.select(window).on('resize', sizeChange);
 
-	
+  var projection = d3.geo.albersUsa().scale(1100);
+  var path = d3.geo.path().projection(projection);
 
-	var region = {
-		'East North Central':
-		{
-			set: d3.set(['55', '17', '18', '26', '39']),
-			score: 0,
-			coordsX: 0,
-			coordsY: 0
-		},
-		'East South Central':
-		{
-			set: d3.set(['21', '47', '28', '01']),
-			score: 0,
-			coordsX: 180,
-			coordsY: 120
-		},
-		'Middle Atlantic':
-		{
-			set: d3.set(['36', '42', '34']),
-			score: 0,
-			coordsX: 190,
-			coordsY: 320
-		},
-		'Mountain':
-		{
-			set: d3.set(['16', '30', '56', '32', '49', '08', '04', '35']),
-			score: 0,
-			coordsX: 615,
-			coordsY: 460
-		},
-		'New England':
-		{
-			set: d3.set(['23', '33', '50', '25', '09', '44']),
-			score: 0,
-			coordsX: 925,
-			coordsY: 235
-		},
-		'Pacific':
-		{
-			set: d3.set(['41', '53', '02', '06', '15']),
-			score: 0,
-			coordsX: 560,
-			coordsY: 265
-		},
-		'South Atlantic':
-		{
-			set: d3.set(['54', '24', '10', '11', '51', '37', '45', '13', '12']),
-			score: 0,
-			coordsX: 270,
-			coordsY: 580
-		},
-		'West North Central':
-		{
-			set: d3.set(['38', '27', '46', '31', '19', '20', '29']),
-			score: 0,
-			coordsX: 0,
-			coordsY: 0
-		},
-		'West South Central':
-		{
-			set: d3.set(['40', '05', '48', '22']),
-			score: 0,
-			coordsX: 0,
-			coordsY: 0
-		},
-	}
+  var svg = d3
+    .select('#steakScaleRegions')
+    .append('svg')
+	.attr('width', '100%')
+	.attr('id', 'map')
+	.append('g');
 
-	// excude empty steak preference and regions
-	data = data.filter(function (el) {
-		return el.steakPreference != "" &&
-			el.region != "";
+  var region = {
+    'East North Central': {
+      set: { '17': 1, '18': 1, '26': 1, '55': 1, '39':1},
+      score: 0
+    },
+    'East South Central': {
+      set: { '21': 1, '47': 1, '28': 1, '1': 1 },
+      score: 0
+    },
+    'Middle Atlantic': {
+      set: { '36': 1, '42': 1, '34': 1 },
+      score: 0
+    },
+    Mountain: {
+      set: { '16': 1, '30': 1, '56': 1, '32': 1, '49': 1, '8': 1, '4': 1, '35': 1 },
+      score: 0
+    },
+    'New England': {
+      set: { '23': 1, '33': 1, '50': 1, '25': 1, '9': 1, '44': 1 },
+      score: 0
+    },
+    Pacific: {
+      set: { '41': 1, '53': 1, '2': 1, '6': 1, '15': 1 },
+      score: 0
+    },
+    'South Atlantic': {
+      set: { '54': 1, '24': 1, '10': 1, '11': 1, '51': 1, '37': 1, '45': 1, '13': 1, '12': 1 },
+      score: 0
+    },
+    'West North Central': {
+      set: { '38': 1, '27': 1, '46': 1, '31': 1, '19': 1, '20': 1, '29': 1 },
+      score: 0
+    },
+    'West South Central': {
+      set: { '40': 1, '5': 1, '48': 1, '22': 1 },
+      score: 0
+    }
+  };
+
+  // excude empty steak preference and regions
+  data = data.filter(function (el) {
+  	return el.steakPreference != "" &&
+  		el.region != "";
+  })
+
+  // put the array of categories in the order that they should appear
+  var summary = d3.nest()
+  	.key(function (d) { return d.region; })
+  	.key(function (d) { return d.steakPreference; })
+  	.rollup(function (v) { return v.length; })
+  	.map(data);
+
+  var regions = Object.keys(summary);
+  // using the grouped data, get percentage of steakConsumers per each income level
+  for (let x = 0; x < regions.length; x++) {
+
+  	var sum = 0;
+  	var count = 0;
+  	var target = summary[regions[x]];
+
+  	for (var k in target) {
+  		if (target.hasOwnProperty(k)) {
+  			sum += steakScale[k] * target[k]
+  			count += target[k]
+  		}
+  	}
+
+  	// update the average steak score for each region
+  	region[regions[x]]['score'] = String(sum / count)
+  }
+
+  var div = d3.select("body").append("div")
+  	.attr("class", "tooltip")
+  	.style("opacity", 0);
+
+
+  var colorScale = d3.scale.linear().domain([1, 2, 4, 5]).range(["#edfaff", "#edfaff",  "#2A3C65", "#2A3C65"]);
+
+  var states = topojson.feature(us, us.objects.states);
+
+  regions.forEach(reg => {
+    var selection = {
+      type: 'FeatureCollection',
+      features: states.features.filter(function(d) {
+        return d.id in region[reg].set;
+      })
+    };
+
+    svg
+      .append('path')
+      .datum(selection)
+      .attr('class', 'state selected-boundary')
+      .attr('d', path);
+
+    svg
+      .append('path')
+	  .datum(selection)
+  	  .style('fill', colorScale(region[reg]['score']))
+	  .attr('d', path)
+	  
+	.on("mouseover", function() {
+		div.transition()
+			.duration(200)
+			.style("opacity", .9);
+		div	.html( "The " + reg + " region likes their meat at <b>"+ Number(region[reg]['score']).toFixed(2)
+		+ "</b> on the steak scale")
+			.style("left", (d3.event.pageX) + "px")
+			.style("top", (d3.event.pageY - 28) + "px");
+		})
+	.on("mouseout", function() {
+		div.transition()
+			.duration(500)
+			.style("opacity", 0);
 	})
 
-	// put the array of categories in the order that they should appear
-	var summary = d3.nest()
-		.key(function (d) { return d.region; })
-		.key(function (d) { return d.steakPreference; })
-		.rollup(function (v) { return v.length; })
-		.map(data);
+	// for mobile, hover is not availabe so do operation on clickl
+	.on("click", function() {
+		div.transition()
+			.duration(200)
+			.style("opacity", .9);
+		div	.html( "The " + reg + " region likes their meat at <b>"+ Number(region[reg]['score']).toFixed(2)
+		+ "</b> on the steak scale")
+			.style("left", (d3.event.pageX) + "px")
+			.style("top", (d3.event.pageY - 28) + "px");
+		})
+  });
 
-	var regions = Object.keys(summary);
-	// using the grouped data, get percentage of steakConsumers per each income level
-	for (let x = 0; x < regions.length; x++) {
+  var container = document.getElementById('steakScaleRegions')
 
-		var sum = 0;
-		var count = 0;
-		var target = summary[regions[x]];
+  d3.select('#map').select('g').attr('transform', 'scale(' + (container.offsetWidth-40) / 900 + ')');
+  document.getElementById('map').style.height = (container.offsetWidth-40) * 0.618;
 
-		for (var k in target) {
-			if (target.hasOwnProperty(k)) {
-				sum += steakScale[k] * target[k]
-				count += target[k]
-			}
-		}
+  function sizeChange() {
+    d3.select('#map').select('g').attr('transform', 'scale(' + (container.offsetWidth-40) / 900 + ')');
+    document.getElementById('map').style.height = (container.offsetWidth-40) * 0.618;
+  }
 
-		// update the average steak score for each region
-		region[regions[x]]['score'] = String(sum / count)
-	}
-
-	var svg = d3.select("#steakScaleRegions")
-	 
-	var path = d3.geo.path()
-		.projection(null);
-
-	// Define the div for the tooltip
-	var div = d3.select("body").append("div")	
-		.attr("class", "tooltip")				
-		.style("opacity", 0);	
-
-	svg.append("use")
-		.attr("xlink:href", "#nation")
-		.attr("fill-opacity", 0.2)
-		.attr("filter", "url(#blur)");
-
-	svg.append("use")
-		.attr("xlink:href", "#nation")
-		.attr("fill", "#fff");
-
-	/*identify the states and apply basic formatting*/
-	svg.append("path")
-		.datum(topojson.feature(us, us.objects.states))
-		.attr("class", "state")
-		.attr("d", path);
-
-	/*apply the state boundaries for each*/
-	svg.append("path")
-		.datum(topojson.mesh(us, us.objects.states, function (a, b) { return a !== b; }))
-		.attr("class", "state-boundary")
-		.attr("d", path);
-		
-	var colorScale = d3.scale.linear().domain([1, 2, 4, 5]).range(["#edfaff", "#edfaff",  "#2A3C65", "#2A3C65"]);
-
-	for (let i = 0; i < Object.keys(region).length; i++) {
-
-		var reg = region[Object.keys(region)[i]];
-		var regTitle = Object.keys(region)[i]
-
-		svg.append("path")
-			.datum(topojson.merge(us, us.objects.states.geometries.filter(function (d) { return reg['set'].has(d.id); })))
-			.style('fill', colorScale(region[Object.keys(region)[i]]['score']))
-			.attr("stroke-width", 1)
-			.attr("stroke", "#f1efef")
-			.attr("title", regTitle)
-			.attr("score", region[Object.keys(region)[i]]['score'])
-			.attr("d", path)
-			.on("mouseover", function() {		
-				div.transition()		
-					.duration(200)		
-					.style("opacity", .9);		
-				div	.html( "The " + '$(this).attr("title")' + " region likes their meat at <b>"+ 'Number($(this).attr("score")).toFixed(2)'
-				+ "</b> on the steak scale")	
-					.style("left", (d3.event.pageX) + "px")		
-					.style("top", (d3.event.pageY - 28) + "px");	
-				})
-			.on("mouseout", function() {		
-				div.transition()		
-					.duration(500)		
-					.style("opacity", 0);	
-			})			
-		}
-
-	// d3.select(self.frameElement).style("height", height + "px");
-	
 	/** build the legend */
 	//set up svg using margin conventions
-	
 	var margin = {
 		top: 10,
-		left: 0,
-		bottom: 15,
-		right:0	
+		bottom: 15	
 	};
-	
-	var width = 220
-	var height = 10 + margin.top  + margin.bottom;
 
-	svg = d3.select("#legend")
+	var height = 10 + margin.top  + margin.bottom;
+	var width = 220;
+
+	var svg = d3.select("#legend")
 		.attr("height", height)
 
 	//Append a defs (for definition) element to your SVG
@@ -253,9 +232,6 @@ export default (us, data, steakScale) => {
 		.attr("x2", width-1)
 		.attr("y2", height - margin.top-margin.bottom + 3)
 		.attr("stroke-width", 1)
-		.attr("stroke", "grey");
+		.attr("stroke", "grey")
   
-
-};
-
-
+}

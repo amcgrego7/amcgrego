@@ -7,7 +7,8 @@
     </v-layout>
 
     <v-layout>
-      <v-flex xs4>
+
+      <v-flex xs12 sm12 lg4>
         <h2>Who eats steak?</h2>
 
         <p>
@@ -17,18 +18,18 @@
           trends, while viewing regional preferences for the doneness tells us who likes their meat moo-ing!
         </p>
       </v-flex>
-      <v-flex xs4>
+      <v-flex xs12 sm6 md6 lg4>
         <steak-bar-chart v-if="steakData.length" :data="steakData" chartID="consumerByIncome"></steak-bar-chart>
       </v-flex>
-      <v-flex xs4>
+      <v-flex xs12 sm6 md6 lg4>
         <steak-bar-chart v-if="steakData.length" :data="steakData" chartID="consumerByEducation"></steak-bar-chart>
       </v-flex>
     </v-layout>
 
 
     <v-layout>
-      <v-flex xs8 lg3>
-        <v-flex xs lg12>
+      <v-flex xs12 lg3>
+        <v-flex>
           <h3 style="margin-top:0px">Steak scale</h3>
           <p style="padding-right:40px">
             The steak scale is for analyzing the doneness of steak, from
@@ -40,18 +41,21 @@
             <span style="color:#aa007f; font-weight:bold">females</span> prefer to have their steak cooked.
           </p>
         </v-flex>
-        <v-flex xs4 lg12>
+        <v-flex>
           <steak-line-chart v-if="steakData.length" :data="steakData" :steakScale="steakScale"></steak-line-chart>
         </v-flex>
       </v-flex>
 
-      <steak-geo-chart class="pt-4 ml-0"
-        v-if="steakData.length && us"
-        xs9
-        :us="us"
-        :data="steakData"
-        :steakScale="steakScale"
-      ></steak-geo-chart>
+      <v-flex lg9>
+        <steak-geo-chart
+          class="pt-4 ml-0"
+          v-if="steakData.length && us"
+          xs9
+          :us="us"
+          :data="steakData"
+          :steakScale="steakScale"
+        ></steak-geo-chart>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -62,6 +66,7 @@ import * as d3 from "d3";
 import steakGeoChart from "../components/SteakGeoChart.vue";
 import steakLineChart from "../components/SteakLineChart.vue";
 import steakBarChart from "../components/SteakBarChart.vue";
+import us from "../assets/us-states.json";
 
 export default {
   components: {
@@ -70,9 +75,10 @@ export default {
     steakBarChart
   },
   created() {
-    d3.json("https://d3js.org/us-10m.v1.json").then(map => {
-      this.us = map;
-    });
+    // d3.json("https://d3js.org/us-10m.v1.json").then(map => {
+    // d3.json("https://bl.ocks.org/mbostock/raw/4090846/us.json").then(map => {
+    //   this.us = map;
+    // });
 
     const vm = this;
     let idx = 0;
@@ -131,7 +137,7 @@ export default {
   computed: {},
   data() {
     return {
-      us: null,
+      us,
       steakData: [],
       steakScale: {
         Well: 5,
@@ -184,8 +190,10 @@ path:hover {
   fill-opacity: 0.8;
 }
 
-.state {
-  fill: #ccc;
+.regionTitle {
+  text-anchor: middle;
+  font-family: arial;
+  font-weight: bold;
 }
 
 .state-boundary {
@@ -193,10 +201,10 @@ path:hover {
   stroke: #fff;
 }
 
-.regionTitle {
-  text-anchor: middle;
-  font-family: arial;
-  font-weight: bold;
+.state.selected-boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2px;
 }
 
 /* below pertains to the line chart */
@@ -220,5 +228,17 @@ path {
 }
 .grid path {
   stroke-width: 0;
+}
+
+.states {
+  fill: #aaa;
+  stroke: #fff;
+  stroke-width: 0.75px;
+}
+#steakScaleRegions {
+  margin: 2%;
+  padding: 20px;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
 }
 </style>
