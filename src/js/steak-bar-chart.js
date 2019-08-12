@@ -33,7 +33,7 @@ export default (data, chart) => {
   // using the grouped data, get percentage of steakConsumers per each income level
   for (x = 0; x < chart.categories.length; x++) {
     scores.push({
-      label: chart.categories[x].replace('degree', ''),
+      label: chart.categories[x].replace('Some college or Associate degree', 'Some college').replace('degree', ''),
       tooltips: chart.tooltips[x],
       score: summary[chart.categories[x]].Yes / (summary[chart.categories[x]].Yes + summary[chart.categories[x]].No)
     });
@@ -47,14 +47,16 @@ export default (data, chart) => {
     left: 160
   };
 
+  var titleSpace = 10;
+
   var width = 390 - margin.left - margin.right,
-    height = 150 - margin.top - margin.bottom;
+    height = 150 - margin.top - margin.bottom - titleSpace;
 
   var svg = d3
     .select('#' + chart.htmlID)
     .append('svg')
     .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom)
+    .attr('height', height + margin.top + margin.bottom + titleSpace)
     .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
@@ -85,9 +87,10 @@ export default (data, chart) => {
     .tickSize(0)
     .orient('left');
 
-  var gy = svg
+  svg
     .append('g')
     .attr('class', 'y axis')
+    .attr('transform', 'translate(' + 0 + ',' + titleSpace + ')')
     .call(yAxis);
 
   // Define the div for the tooltip
@@ -106,6 +109,7 @@ export default (data, chart) => {
   //append rects
   bars
     .append('rect')
+    .attr('transform', 'translate(' + 0 + ',' + titleSpace + ')')
     .attr('width', 0) // set initial width to 0 for easing
     .on('mouseover', function(d) {
       div
@@ -139,6 +143,8 @@ export default (data, chart) => {
   bars
     .append('text')
     .attr('class', 'label')
+    .attr('transform', 'translate(' + 0 + ',' + titleSpace + ')')
+
     //y position of the label is halfway down the bar
     .attr('y', function(d) {
       return y(d.label) + y.rangeBand() / 2 + 4;
@@ -158,11 +164,18 @@ export default (data, chart) => {
     .attr('y', 0 - margin.top / 2)
     .style('font-size', '16px')
     .text(chart.title);
+  // add subtitle
+  svg
+    .append('text')
+    .attr('x', 40 - margin.left)
+    .attr('y', 18 - margin.top / 2)
+    .style('font-size', '12px')
+    .text(chart.subtitle);
 
   svg
     .append('text')
     .attr('x', margin.right)
-    .attr('y', height + margin.bottom / 1.25)
+    .attr('y', height + margin.bottom +titleSpace / 1.25)
     .style('font-size', '12px')
     .text(String(startLen - endLen) + ' empty values excluded');
 };

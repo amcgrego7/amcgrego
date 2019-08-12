@@ -1,7 +1,7 @@
 <template>
   <v-flex>
-	<svg id="legend" style="margin-left:375px" />
-  <div id="steakScaleRegions" width="100%"></div>
+	<svg class="ml-4 pl-4 mb-0" id="legend"/>
+  <div class="mr-4" id="steakScaleRegions" width="100%"></div>
   </v-flex>
 </template>
 

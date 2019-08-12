@@ -6,7 +6,7 @@
       </v-flex>
     </v-layout>
 
-    <v-layout>
+    <v-layout row wrap>
 
       <v-flex xs12 sm12 lg4>
         <h2>Who eats steak?</h2>
@@ -18,23 +18,26 @@
           trends, while viewing regional preferences for the doneness tells us who likes their meat moo-ing!
         </p>
       </v-flex>
-      <v-flex xs12 sm6 md6 lg4>
+
+      <v-flex xs12 sm6 lg4>
         <steak-bar-chart v-if="steakData.length" :data="steakData" chartID="consumerByIncome"></steak-bar-chart>
       </v-flex>
-      <v-flex xs12 sm6 md6 lg4>
+
+      <v-flex xs12 sm6 lg4>
         <steak-bar-chart v-if="steakData.length" :data="steakData" chartID="consumerByEducation"></steak-bar-chart>
       </v-flex>
+
     </v-layout>
 
 
-    <v-layout>
-      <v-flex xs12 lg3>
+    <v-layout row wrap>
+      <v-flex xs12 sm3>
         <v-flex>
           <h3 style="margin-top:0px">Steak scale</h3>
           <p style="padding-right:40px">
             The steak scale is for analyzing the doneness of steak, from
-            <b>rare (1) to well done (5)</b>. To the right, view
-            regional preferences for steak doneness. Below, we can compare age groups and how
+            <b>rare (1) to well done (5)</b>. In the map, view
+            regional preferences for steak doneness. In the line chart, we can compare age groups and how
             <span
               style="color:#607C9A; font-weight:bold"
             >males</span> and
@@ -42,13 +45,15 @@
           </p>
         </v-flex>
         <v-flex>
-          <steak-line-chart v-if="steakData.length" :data="steakData" :steakScale="steakScale"></steak-line-chart>
+          <steak-line-chart v-if="steakData.length" :data="steakData" :steakScale="steakScale" style="text-align:center"
+></steak-line-chart>
         </v-flex>
       </v-flex>
 
-      <v-flex lg9>
+      <v-flex xs12 sm9>
         <steak-geo-chart
-          class="pt-4 ml-0"
+          class="pt-4 ml-0 mt-0"
+          style="text-align:center"
           v-if="steakData.length && us"
           xs9
           :us="us"
@@ -170,6 +175,10 @@ div.tooltip {
   fill: #607c9a;
 }
 
+.bar:hover{
+  opacity: .8;
+}
+
 .axis {
   font-size: 13px;
 }
@@ -235,10 +244,5 @@ path {
   stroke: #fff;
   stroke-width: 0.75px;
 }
-#steakScaleRegions {
-  margin: 2%;
-  padding: 20px;
-  border: 2px solid #d0d0d0;
-  border-radius: 5px;
-}
+
 </style>

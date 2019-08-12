@@ -1,8 +1,11 @@
 <template>
+  <v-flex fill-height pa-0 elevation-3
+>
   <v-img
     :src="getPic(tile.img)"
     height="100%"
-    gradient="rgba(0, 0, 0, .1), rgba(0, 0, 0, .9)"
+    gradient="rgba(0, 0, 0, .1), rgba(0, 0, 0, .6)"
+
   >
     <v-layout v-if="!tile.prominent" fill-height wrap text-xs-right ma-0>
       <v-flex xs12>
@@ -38,6 +41,7 @@
       </v-flex>
     </v-layout>
   </v-img>
+  </v-flex>
 </template>
 
 <script>
@@ -47,6 +51,10 @@ export default {
       type: Object,
       default: () => ({})
     }
+  },
+  data() {
+    return {
+    };
   },
   computed: {
   },
