@@ -28,18 +28,18 @@ const state = {
       date: new Date('2019/07/28').toDateString(),
       path: 'optimization',
       icon: 'time_to_leave',
-      desc: 'An evolutionary algorithm and basic JavaScript',
+      desc: 'An evolutionary algorithm in JavaScript',
       title: 'Optimization',
       img: 'optimization-thumbnail.png'
     },
     {
       includeAsTile: true,
-      date: new Date('2019/07/28').toDateString(),
+      date: new Date('2019/08/11').toDateString(),
       path: 'steak-analysis',
       icon: 'restaurant_menu',
-      desc: "Americans and Steak",
+      desc: "A dashboard about Americans and steak",
       title: 'Steak Analysis',
-      img: 'optimization-thumbnail.png'
+      img: 'steak-analysis-thumbnail.png'
     }
   ]
 };
