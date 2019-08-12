@@ -142,12 +142,12 @@ export default (us, data, steakScale) => {
 
   var container = document.getElementById('steakScaleRegions')
 
-  d3.select('#map').select('g').attr('transform', 'scale(' + (container.offsetWidth-40) / 900 + ')');
-  document.getElementById('map').style.height = (container.offsetWidth-40) * 0.618;
+  d3.select('#map').select('g').attr('transform', 'scale(' + (container.offsetWidth) / 900 + ')');
+  document.getElementById('map').style.height = (container.offsetWidth) * 0.618;
 
   function sizeChange() {
     d3.select('#map').select('g').attr('transform', 'scale(' + (container.offsetWidth-40) / 900 + ')');
-    document.getElementById('map').style.height = (container.offsetWidth-40) * 0.618;
+    document.getElementById('map').style.height = (container.offsetWidth) * 0.618;
   }
 
 	/** build the legend */
