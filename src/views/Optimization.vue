@@ -1,19 +1,20 @@
 <template>
   <v-container>
     <v-layout wrap>
-      <div v-if="screensize != 'xs'" id="wrap"></div>
+      <div v-if="['lg', 'xl'].includes(screensize)" id="wrap"></div>
 
       <h1>Pack that car!</h1>
       <v-spacer></v-spacer>
-      <v-chip xs2 small color="info" text-color="white" class="font-weight-bold">App</v-chip>
-      <v-chip
-        xs2
-        small
-        color="blue-grey darken-3"
-        text-color="white"
-        class="font-weight-bold"
-      >Tutorial</v-chip>
-
+      <v-flex style="display:none">
+        <v-chip xs2 small color="info" text-color="white" class="font-weight-bold">App</v-chip>
+        <v-chip
+          xs2
+          small
+          color="blue-grey darken-3"
+          text-color="white"
+          class="font-weight-bold"
+        >Tutorial</v-chip>
+      </v-flex>
       <v-flex>
         <p class="subheading">
           This is a genetic algorithm developed in JavaScript. Here's the scenario, imagine you are going on a trip, but you have a limited amount of space available in your car. Your goal is to bring with you the combination of items that offer the
@@ -50,7 +51,7 @@
             <span class="subtitle-1 font-weight-bold">{{ totalSpace }}</span>
             units of space and has a total value of
             <span
-              class="subtutle-1 font-weight-bold"
+              class="subtitle-1 font-weight-bold"
             >{{ '$' + totalValue }}</span>
           </v-card-text>
 
@@ -111,7 +112,7 @@
       </v-flex>
     </v-layout>
     <v-layout wrap mt-4>
-      <v-flex xs3 md2 mt-2 mb-2 v-for="input in inputs" style="text-align:center">
+      <v-flex xs4 sm3 md2 mt-2 mb-2 v-for="input in inputs" style="text-align:center">
         <div>
           <b>{{input.item}}</b>
         </div>

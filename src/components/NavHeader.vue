@@ -1,12 +1,16 @@
 <template>
     <v-toolbar app clipped-left>
+      
       <v-toolbar-side-icon @click.stop="updateStoreDrawer(!drawer)"></v-toolbar-side-icon>
 
-      <v-toolbar-title class="headline">
-        <span class="font-weight-light">ANDREW</span>
-        <span>MCGREGOR</span>
-      </v-toolbar-title>
+      <router-link to='home'>
+        <v-toolbar-title class="headline">
+          <span class="font-weight-light">ANDREW</span>
+          <span>MCGREGOR</span>
+        </v-toolbar-title>
+      </router-link>
     </v-toolbar>
+
 </template>
 
 <script>
@@ -23,6 +27,10 @@ export default {
     return {
     }
   },
+  created() {
+    const screenSize = ['md', 'lg', 'xl']
+    this.updateStoreDrawer(screenSize.includes(this.$vuetify.breakpoint.name))  
+  },
   methods: {
     ...mapMutations([
       'updateDrawer'
@@ -33,3 +41,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+a {
+  text-decoration: none;
+  color: #000;
+}
+</style>

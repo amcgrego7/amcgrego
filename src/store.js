@@ -5,15 +5,9 @@ Vue.use(Vuex);
 // root state object.
 // each Vuex instance is just a single state tree.
 const state = {
-  drawer: true,
+  
+  drawer : false,
   apps: [
-    { 
-      include: false,
-      path: 'home', 
-      icon: 'home',
-      desc: 'Home',
-      title: 'Home'
-    },
     {
       includeAsTile: true,
       date: new Date('2019/01/02').toDateString(),
@@ -63,7 +57,11 @@ const actions = {};
 const getters = {
   tiles: state => {
     return state.apps.filter(app => app.includeAsTile)
-  }  
+  },
+  // drawer: state => {
+  //   const screenSize = ['sm', 'md']
+  //   return state.$vuetify.breakpoint.name in screenSize
+  // }
 };
 
 // A Vuex instance is created by combining the state, mutations, actions,

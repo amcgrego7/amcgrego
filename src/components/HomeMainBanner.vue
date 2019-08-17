@@ -9,7 +9,7 @@
     <v-layout fill-height align-center pa-3>
       <v-flex xs12 md7 offset-md1>
         <h1 class="display-3 font-weight-light">Andrew McGregor</h1>
-        <div class="subheading text-uppercase pl-2 mb-4">Data Analyst and Web-Developer</div>
+        <v-flex xs12 md6 lg12 class="subheading text-uppercase pl-2 mb-4">Data Analyst and Web-Developer</v-flex>
 
         <router-link to="./about">
           <v-btn color="primary" depressed round>About me</v-btn>
