@@ -10,7 +10,7 @@
       <kpis name="Return" :value="returnTotal" :screensize="screensize" :color="true"></kpis>
 
       <v-flex xs12>
-        <v-layout justify-left row wrap>
+        <v-layout justify-left row wrap> 
           <v-flex lg6 sm12 v-for="(stock, index) in stocks" :key="index">
             <stock-card :stock="stock"></stock-card>
           </v-flex>

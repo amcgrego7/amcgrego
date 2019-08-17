@@ -1,16 +1,19 @@
 <template>
-  <v-timeline>
+  <v-timeline :dense="$vuetify.breakpoint.name === 'xs' ? true : false">
     <v-timeline-item v-for="(story, i) in stories" :key="i" :color="story.color" small>
+
+
       <span
-        slot="opposite"
+        :slot="$vuetify.breakpoint.name === 'xs' ? 'icon' : 'opposite'"
         :class="`headline font-weight-bold ${story.color}--text`"
       >
       <v-img
           :src="getPic(story.img)"
           style="border-radius:3px;"
           v-bind:style="{ float: i % 2 === 1 ? 'right' : 'left' }"
-          height="125"
-          width="125"
+
+          :height="['xs', 'sm'].includes($vuetify.breakpoint.name) ? '65' : '125'"
+          :width="['xs', 'sm'].includes($vuetify.breakpoint.name)  ? '65' : '125'"
         ></v-img>
       </span>
       <div class="py-3">
