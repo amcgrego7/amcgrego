@@ -1,7 +1,7 @@
 <template>
   <v-flex>
-	<svg class="mb-0" id="legend"/>
-  <div id="steakScaleRegions" width="100%"></div>
+    <svg :class="$vuetify.breakpoint.name === 'xs' ? 'ml-4 pl-4' : ''" id="legend" />
+    <div id="steakScaleRegions" width="100%"></div>
   </v-flex>
 </template>
 
@@ -11,22 +11,17 @@ import SteakGeochart from "../js/steak-geo-chart.js";
 
 /* global d3  */
 export default {
-  props: ['us','data', 'steakScale'],
+  props: ["us", "data", "steakScale"],
   methods: {
-	  SteakGeochart
+    SteakGeochart
   },
-  computed: {
-  },
+  computed: {},
   mounted() {
-    SteakGeochart(this.us, this.data, this.steakScale)
-	  
+    SteakGeochart(this.us, this.data, this.steakScale);
   },
 
   data() {
-    return {
-    };
+    return {};
   }
-
-
 };
 </script>

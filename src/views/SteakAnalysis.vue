@@ -7,11 +7,10 @@
     </v-layout>
 
     <v-layout row wrap>
-
       <v-flex xs12 sm12 lg4>
         <h2>Who eats steak?</h2>
 
-        <p>
+        <p class="pr-4">
           A recent
           <a href="https://github.com/fivethirtyeight/data/tree/master/steak-survey">survey</a> provides a taste of how
           Americans prefer to eat steak. The bar charts of individuals who eat steak grouped by income and education indicate some interesting
@@ -26,9 +25,7 @@
       <v-flex xs12 sm6 lg4>
         <steak-bar-chart v-if="steakData.length" :data="steakData" chartID="consumerByEducation"></steak-bar-chart>
       </v-flex>
-
     </v-layout>
-
 
     <v-layout row wrap>
       <v-flex xs12 sm3>
@@ -45,8 +42,12 @@
           </p>
         </v-flex>
         <v-flex>
-          <steak-line-chart v-if="steakData.length" :data="steakData" :steakScale="steakScale" style="text-align:center"
-></steak-line-chart>
+          <steak-line-chart
+            v-if="steakData.length"
+            :data="steakData"
+            :steakScale="steakScale"
+            style="text-align:center"
+          ></steak-line-chart>
         </v-flex>
       </v-flex>
 
@@ -175,8 +176,8 @@ div.tooltip {
   fill: #607c9a;
 }
 
-.bar:hover{
-  opacity: .8;
+.bar:hover {
+  opacity: 0.8;
 }
 
 .axis {
@@ -244,5 +245,4 @@ path {
   stroke: #fff;
   stroke-width: 0.75px;
 }
-
 </style>

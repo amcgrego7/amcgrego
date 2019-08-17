@@ -44,7 +44,7 @@ export default (data, chart) => {
     top: 25,
     right: 35,
     bottom: 15,
-    left: 160
+    left: 130
   };
 
   var titleSpace = 10;
