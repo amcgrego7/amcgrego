@@ -11,7 +11,7 @@
 
       <v-flex xs12>
         <v-layout justify-left row wrap> 
-          <v-flex lg6 sm12 v-for="(stock, index) in stocks" :key="index">
+          <v-flex lg6 sm12 v-for="(stock, index) in ownedStocks" :key="index">
             <stock-card :stock="stock"></stock-card>
           </v-flex>
         </v-layout>
@@ -67,6 +67,11 @@ export default {
     returnTotal() {
       const total = this.portfolioTotal - this.investedTotal;
       return total;
+    },
+    ownedStocks() {
+      return this.stocks.filter(stock => { 
+        return stock.owners.length > 0
+      })
     },
     stocks() {
       const vm = this;
