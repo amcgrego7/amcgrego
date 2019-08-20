@@ -9,6 +9,8 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.0.0",
+    "@tensorflow/tfjs": "^1.2.7",
     "axios": ">=0.18.0",
     "babel-polyfill": "^6.26.0",
     "d3": "^5.9.7",

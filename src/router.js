@@ -34,6 +34,11 @@ export default new Router({
       path: '/steak-analysis',
       name: 'steak-analysis',
       component: () => import(/* webpackChunkName: "about" */ './views/SteakAnalysis.vue')
+    },
+    {
+      path: '/animal-classifier',
+      name: 'animal-classifer',
+      component: () => import(/* webpackChunkName: "about" */ './views/AnimalClassifier.vue')
     }
   ]
 })

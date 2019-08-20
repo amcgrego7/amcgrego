@@ -34,6 +34,15 @@ const state = {
       desc: "A dashboard about Americans and steak",
       title: 'Steak Analysis',
       img: 'steak-analysis-thumbnail.png'
+    },
+    {
+      includeAsTile: true,
+      date: new Date('2019/08/28').toDateString(),
+      path: 'animal-classifier',
+      icon: 'restaurant_menu',
+      desc: "Identifying animals in a video",
+      title: 'Animal Classifier',
+      img: 'steak-analysis-thumbnail.png'
     }
   ]
 };
