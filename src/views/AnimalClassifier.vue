@@ -1,22 +1,34 @@
 <template>
   <v-container grid-list-lg>
     <v-layout justify-center wrap>
-      <div class="container">
-        <video
-          crossorigin="anonymous"
-          src="https://animal-classifier.s3.amazonaws.com/Bear+1+7-1-19+(1).mp4"
-          class="size"
-          autoplay
-          loop
-          playsinline
-          muted
-          ref="video"
-          width="600"
-          height="500"
-        />
-        <canvas class="size" ref="canvas" width="600" height="500" />
-      </div>
+      <v-flex xs12>
+        <h1>Object Detection with Tensorflow.js</h1>
+      </v-flex>
+      
+      <v-flex>
 
+      </v-flex>
+
+      <v-flex xs12>
+        <v-btn v-on:click="loadModel()">Load Model</v-btn>
+        <v-btn v-on:click="detectFrame($refs.video, model)">Begin Detection</v-btn>
+        <v-btn v-on:click="nextVideo()">Next Video</v-btn>
+        <div class="container">
+          <video
+            crossorigin="anonymous"
+            :src="`https://animal-classifier.s3.amazonaws.com/${currentVideo}.mp4`"
+            class="size"
+            autoplay
+            loop
+            playsinline
+            muted
+            ref="video"
+            width="600"
+            height="500"
+          />
+          <canvas class="size" ref="canvas" width="600" height="500" />
+        </div>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -31,27 +43,38 @@ export default {
   components: {},
   data() {
     return {
-      model : null
+      model : null,
+      currentVideo : 'bear',
+      videos : ['bear', 'bears', 'turkey']
     };
   },
-  mounted() {
-    const videoRef = this.$refs.video;
-    const canvasRef = this.$refs.canvas;
-    const vm = this;
 
+  methods: {
+    nextVideo() {
+      const videos = this.videos;
+      const currentIndex = videos.indexOf(this.currentVideo);
+
+      if ((currentIndex + 1) === videos.length) {
+        this.currentVideo = videos[0]
+      } else {
+        this.currentVideo = videos[currentIndex + 1]
+      }
+    },
+    loadModel() {
+    const vm = this;
     const modelPromise = cocoSsd.load();
     Promise.all([modelPromise])
-      // Promise.all([modelPromise, webCamPromise])
       .then(values => {
+        vm.model = values[0]
         alert('okay')
-        this.detectFrame(videoRef, values[0]);
       })
       .catch(error => {
         console.error(error);
       });
-  },
-  methods: {
-
+    },
+    beginDetection() {
+        this.detectFrame(this.$refs.video, this.model);
+    },
     detectFrame(video, model) {
       model.detect(video).then(predictions => {
         this.renderPredictions(predictions);
@@ -66,7 +89,7 @@ export default {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       // Font options.
       const font = "16px sans-serif";
-      const shiftUp = 50;
+      const shiftUp = 10;
       ctx.font = font;
       ctx.textBaseline = "top";
       predictions.forEach(prediction => {
