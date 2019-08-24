@@ -166,9 +166,6 @@ export default {
       }
     }
   },
-  created() {
-    this.$ga.page('/optimization')
-  },
   computed: {
     animatedSpace: function() {
       return this.tweenedSpace.toFixed(0);

@@ -209,7 +209,6 @@ export default {
   },
 
   created() {
-    this.$ga.page('/portfolio')
 
     const vm = this;
     const symbols = vm.allStocks.map(d => {

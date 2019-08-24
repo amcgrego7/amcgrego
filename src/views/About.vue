@@ -57,10 +57,7 @@ import aboutTimeline from '../components/AboutTimeline'
 export default {
   components: {
     aboutTimeline
-  },
-  created() {
-      this.$ga.page('/about')
-  },
+  }
 }
 </script>
 

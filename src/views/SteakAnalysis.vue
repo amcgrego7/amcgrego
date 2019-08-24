@@ -81,8 +81,6 @@ export default {
     steakBarChart
   },
   created() {
-    this.$ga.page('/steak-analysis')
-
     // d3.json("https://d3js.org/us-10m.v1.json").then(map => {
     // d3.json("https://bl.ocks.org/mbostock/raw/4090846/us.json").then(map => {
     //   this.us = map;

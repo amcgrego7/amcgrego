@@ -82,9 +82,6 @@ export default {
       videos: ["turkey", "bear", "bears"]
     };
   },
-  created(){
-    this.$ga.page('/animal-classifier')
-  },
   mounted() {
     this.loadModel();
   },

@@ -28,9 +28,6 @@ export default {
   components: { 
     homeMainBanner,
     homeSubBanner
-  },
-  created() {
-    this.$ga.page('/')
   }
 };
 </script>
