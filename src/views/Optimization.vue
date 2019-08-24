@@ -63,12 +63,7 @@
         </v-card>
       </v-dialog>
 
-      <v-alert 
-        v-if="totalSpace && totalValue"
-        :value="true"
-        type="info"
-        outline
-      >
+      <v-alert v-if="totalSpace && totalValue" :value="true" type="info" outline>
         The solution uses
         <span class="title font-weight-bold">{{ animatedSpace }}</span>
         units of space and has a total value of
@@ -112,7 +107,7 @@
       </v-flex>
     </v-layout>
     <v-layout wrap mt-4>
-      <v-flex xs4 sm3 md2 mt-2 mb-2 v-for="input in inputs" style="text-align:center">
+      <v-flex xs4 sm3 md2 mt-2 mb-2 v-for="(input, key) in inputs" v-bind:key="key" style="text-align:center">
         <div>
           <b>{{input.item}}</b>
         </div>

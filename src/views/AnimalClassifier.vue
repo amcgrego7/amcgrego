@@ -8,7 +8,7 @@
       <v-flex>
         <p
           class="subheading"
-        >Both Machine Learning and Web-Development have taken significant strides over the past few years. It's incredibly exciting when the two subjects converge, because that's where data science can reach the widest audience! When Tensorflow.js was released, I was stoked because it meant machine learning could now be performed in the browser as opposed to pinging a server to perform inference on data. Getting up and running isn't a daunting task. Tensorflow.js does a great job with showing examples of what's possible with the JavaScript version, like training a new model in the browser or loading an existing model that was trained in Python.</p>
+        >Both machine learning and web-development have taken significant strides over the past few years. It's incredibly exciting when the two subjects converge, because that's where data science can reach the widest audience! When Tensorflow.js was released, I was stoked because it meant machine learning could now be performed in the browser for both training and inference. Web-developers wouldn't need to set up an API to ping a server to perform inference on data. Getting up and running wasn't too difficult because Tensorflow.js does a great job with showing examples of what's possible with the JavaScript version. The examples cover training a new model in the browser and loading an existing model that was trained in Python.</p>
       </v-flex>
 
       <v-flex xs12>
@@ -51,15 +51,26 @@
             muted
             controls
             ref="video"
-            width="600"
+            :width="screenWidth > 600 ? 600 : screenWidth -100"
             height="340"
           />
-          <canvas class="size" ref="canvas" width="600" height="340" />
+          <canvas
+            class="size"
+            ref="canvas"
+            :width="screenWidth > 600 ? 600 : screenWidth - 100"
+            height="340"
+          />
         </div>
       </v-flex>
 
       <v-flex>
-        <p>As you can see, this pre-trained <a href="https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd"  target="_blank">COCO SSD model</a> is capable of identify many (~90) classes. In my videos, you see bears and birds being detected. With a more robust model, we'd be able to do more examples to identify the coyotes, deer, and other animals captured on camera.</p>
+        <p>
+          As you can see, this pre-trained
+          <a
+            href="https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd"
+            target="_blank"
+          >COCO SSD model</a> is capable of identify many (~90) classes. In my videos, you see bears and birds being detected. With a more robust model, we'd be able to do more examples to identify the coyotes, deer, and other animals captured on camera.
+        </p>
         <p>Nice, there you have it! I have another Tensorflow project that I'll be posting soon.</p>
       </v-flex>
     </v-layout>
@@ -72,7 +83,6 @@ import * as cocoSsd from "@tensorflow-models/coco-ssd";
 
 export default {
   name: "AnimalClassifier",
-  computed: {},
   components: {},
   data() {
     return {
@@ -99,15 +109,11 @@ export default {
     async loadModel() {
       const vm = this;
       const modelPromise = await cocoSsd.load();
-      Promise.all([modelPromise])
-        .then(values => {
-          vm.model = values[0];
-          vm.loading = false;
-          vm.detectFrame(vm.$refs.video, vm.model);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+      Promise.all([modelPromise]).then(values => {
+        vm.model = values[0];
+        vm.loading = false;
+        vm.detectFrame(vm.$refs.video, vm.model);
+      });
     },
     detectFrame(video, model) {
       model.detect(video).then(predictions => {
@@ -149,7 +155,12 @@ export default {
         ctx.fillStyle = "#000000";
         ctx.fillText(prediction.class, x, y - shiftUp);
       });
-    },
+    }
+  },
+  computed: {
+    screenWidth() {
+      return this.$vuetify.clientWidth;
+    }
   }
 };
 </script>
@@ -162,7 +173,7 @@ export default {
   width: 100%;
 }
 .img-border {
-  border:1px solid #fff;
+  border: 1px solid #fff;
   border-radius: 2px;
 }
 
