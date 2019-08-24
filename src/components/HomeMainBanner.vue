@@ -4,7 +4,8 @@
     height="400"
     width="100%"
     gradient="to top right, rgb(245,245,245, .7), rgb(0,0,0, .1)"
-    :src="require('@/assets/switzerland.jpg')"
+    :src="require('@/assets/switzerland-compressed.jpg')"
+    loading="lazy"
   >
     <v-layout fill-height align-center pa-3>
       <v-flex xs12 md7 offset-md1>

@@ -35,15 +35,15 @@ const state = {
       title: 'Steak Analysis',
       img: 'steak-analysis-thumbnail.png'
     },
-    // {
-    //   includeAsTile: false,
-    //   date: new Date('2019/08/28').toDateString(),
-    //   path: 'animal-classifier',
-    //   icon: 'videocam',
-    //   desc: "Identifying animals in a video",
-    //   title: 'Animal Classifier',
-    //   img: 'steak-analysis-thumbnail.png'
-    // }
+    {
+      includeAsTile: true,
+      date: new Date('2019/08/24').toDateString(),
+      path: 'animal-classifier',
+      icon: 'videocam',
+      desc: "Identifying animals in a video",
+      title: 'Animal Classifier',
+      img: 'animal-classifier-thumbnail.png'
+    }
   ]
 };
 

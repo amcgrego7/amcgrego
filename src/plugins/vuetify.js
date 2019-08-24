@@ -8,18 +8,3 @@ Vue.use(Vuetify, {
 })
 
 Vue.use(Vuetify)
-
-
-// Vue.use(Vuetify, {
-//   icons: {
-//     iconfont: 'fa',
-//   }
-// })
-
-
-
-// export default new Vuetify({
-//   icons: {
-//     iconfont: 'fa',
-//   },
-// })

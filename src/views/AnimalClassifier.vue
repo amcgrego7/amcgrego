@@ -4,37 +4,70 @@
       <v-flex xs12>
         <h1>Object Detection with Tensorflow.js</h1>
       </v-flex>
-      
-      <v-flex>
 
+      <v-flex>
+        <p
+          class="subheading"
+        >Both Machine Learning and Web-Development have taken significant strides over the past few years. It's incredibly exciting when the two subjects converge, because that's where data science can reach the widest audience! When Tensorflow.js was released, I was stoked because it meant machine learning could now be performed in the browser as opposed to pinging a server to perform inference on data. Getting up and running isn't a daunting task. Tensorflow.js does a great job with showing examples of what's possible with the JavaScript version, like training a new model in the browser or loading an existing model that was trained in Python.</p>
       </v-flex>
 
       <v-flex xs12>
-        <v-btn v-on:click="loadModel()">Load Model</v-btn>
-        <v-btn v-on:click="detectFrame($refs.video, model)">Begin Detection</v-btn>
-        <v-btn v-on:click="nextVideo()">Next Video</v-btn>
-        <div class="container">
+        <a href="https://www.tensorflow.org/js/demos/" target="_blank">
+          <v-img
+            class="elevation-2 mx-auto"
+            max-width="800"
+            pa-5
+            :src="require('@/assets/tensorflowjs-demos.png')"
+            href="https://www.tensorflow.org/js/demos/"
+            target="_blank"
+          ></v-img>
+        </a>
+      </v-flex>
+
+      <v-flex xs12 pt-4 pb-0>
+        <h2>Detecting Animals in the Woods</h2>
+      </v-flex>
+
+      <v-flex>
+        <p
+          class="subheading"
+        >My wife's parents have a camera that is set up in the woods behind their house to see what animals sniffing around. I thought it would be a great opportunity to apply one of Tensorflow's pre-trained models to their video archives to detect what animals have walked by. The difficulty with this project wasn't Tensorflow, but rather, making the videos available to the model in this vue.js based single page web app. My solution was to use Amazon's S3 to store the media files, then configure CORS settings to allow access to the videos. I referenced the media file URL using the HTML video tag.</p>
+
+        <p
+          class="subheading"
+        >When you visited this page, the model begins download. It takes about 10 seconds, but after that, the video displayed below will show bounding boxes and the animal being identified. Click "next" to view another video.</p>
+      </v-flex>
+
+      <v-flex xs12 align-center row text-xs-center>
+        <v-btn v-on:click="nextVideo()" :loading="loading" :disabled="loading">Next Video</v-btn>
+
+        <div class="canvas-container">
           <video
             crossorigin="anonymous"
             :src="`https://animal-classifier.s3.amazonaws.com/${currentVideo}.mp4`"
-            class="size"
-            autoplay
             loop
             playsinline
+            autoplay
             muted
+            controls
             ref="video"
             width="600"
-            height="500"
+            height="340"
           />
-          <canvas class="size" ref="canvas" width="600" height="500" />
+          <canvas class="size" ref="canvas" width="600" height="340" />
         </div>
+      </v-flex>
+
+      <v-flex>
+        <p>As you can see, this pre-trained <a href="https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd"  target="_blank">COCO SSD model</a> is capable of identify many (~90) classes. In my videos, you see bears and birds being detected. With a more robust model, we'd be able to do more examples to identify the coyotes, deer, and other animals captured on camera.</p>
+        <p>Nice, there you have it! I have another Tensorflow project that I'll be posting soon.</p>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import "@tensorflow/tfjs";
+// import "@tensorflow/tfjs";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 
 export default {
@@ -43,37 +76,38 @@ export default {
   components: {},
   data() {
     return {
-      model : null,
-      currentVideo : 'bear',
-      videos : ['bear', 'bears', 'turkey']
+      model: null,
+      loading: true,
+      currentVideo: "turkey",
+      videos: ["turkey", "bear", "bears"]
     };
   },
-
+  mounted() {
+    this.loadModel();
+  },
   methods: {
     nextVideo() {
       const videos = this.videos;
       const currentIndex = videos.indexOf(this.currentVideo);
 
-      if ((currentIndex + 1) === videos.length) {
-        this.currentVideo = videos[0]
+      if (currentIndex + 1 === videos.length) {
+        this.currentVideo = videos[0];
       } else {
-        this.currentVideo = videos[currentIndex + 1]
+        this.currentVideo = videos[currentIndex + 1];
       }
     },
-    loadModel() {
-    const vm = this;
-    const modelPromise = cocoSsd.load();
-    Promise.all([modelPromise])
-      .then(values => {
-        vm.model = values[0]
-        alert('okay')
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    },
-    beginDetection() {
-        this.detectFrame(this.$refs.video, this.model);
+    async loadModel() {
+      const vm = this;
+      const modelPromise = await cocoSsd.load();
+      Promise.all([modelPromise])
+        .then(values => {
+          vm.model = values[0];
+          vm.loading = false;
+          vm.detectFrame(vm.$refs.video, vm.model);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     },
     detectFrame(video, model) {
       model.detect(video).then(predictions => {
@@ -121,13 +155,25 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.canvas-container {
   margin: 0 auto;
-  position:relative;
+  position: relative;
+  height: 350px; /* based on height of video player; */
+  width: 100%;
 }
-.size {
+.img-border {
+  border:1px solid #fff;
+  border-radius: 2px;
+}
+
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
+  right: 0;
 }
 </style>

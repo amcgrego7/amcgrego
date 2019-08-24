@@ -3,7 +3,8 @@
 >
   <v-img
     :src="getPic(tile.img)"
-    height="100%"
+    loading="lazy"
+    height="200"
     gradient="rgba(0, 0, 0, .1), rgba(0, 0, 0, .6)"
 
   >
