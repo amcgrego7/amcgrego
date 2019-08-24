@@ -16,6 +16,15 @@ import Vuetify from 'vuetify'
 
 import App from './App.vue'
 import router from './router'
+import VueAnalytics from 'vue-ua'
+
+Vue.use(VueAnalytics, {
+  appName: 'amcgrego', // Mandatory
+  appVersion: '1.0', // Mandatory
+  trackingId: 'UA-146428087-1', // Mandatory
+  vueRouter: router, // Pass the router instance to automatically sync with router (optional)
+
+})
 
 Vue.use(VueAxios, axios, Vuetify)
 
@@ -26,11 +35,3 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
-
-ga('set', 'page', router.currentRoute.path);
-ga('send', 'pageview');
-
-router.afterEach(( to, from ) => {
-  ga('set', 'page', to.path);
-  ga('send', 'pageview');
-});

@@ -56,6 +56,9 @@ export default {
             vm.sumProp(cur.owners, "percent")
         );
       }, 0);
+    },
+    track () {
+      this.$ga.page('/')
     }
   },
 
@@ -206,6 +209,8 @@ export default {
   },
 
   created() {
+    this.$ga.page('/portfolio')
+
     const vm = this;
     const symbols = vm.allStocks.map(d => {
       return d.symbol;

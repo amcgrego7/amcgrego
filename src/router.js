@@ -38,7 +38,7 @@ export default new Router({
     {
       path: '/animal-classifier',
       name: 'animal-classifer',
-      component: () => import(/* webpackChunkName: "about" */ './views/AnimalClassifier.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/AnimalClassifier.vue'),
     }
   ]
 })

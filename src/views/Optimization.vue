@@ -164,9 +164,10 @@ export default {
         this.dialog = true;
         this.dialogFlag = false;
       }
-
-      // alert(output);
     }
+  },
+  created() {
+    this.$ga.page('/optimization')
   },
   computed: {
     animatedSpace: function() {
