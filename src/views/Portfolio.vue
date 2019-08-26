@@ -1,6 +1,16 @@
 <template>
   <v-container>
     <v-layout wrap>
+      <v-flex xs12>
+        <h1>The Cousins Portfolio</h1>
+      </v-flex>
+
+      <v-flex>
+        <p
+          class="subheading"
+        >Rather than buying gifts for my neices and nephews each year, I make a contribution to a portfolio of stock investments on their behalf. That portfolio resides on the investing platform called <a href="www.robinhood.com">Robinhood</a>. To provide awareness on how the portfolio is doing for my shareholders, I set up a web application that uses the <a href="https://iextrading.com/developer/">IEX Trading API</a> to retrive current stock prices and recent news articles. Each neice and nephew can come to this website to explore their portfolio.</p>
+      </v-flex>
+
       <v-flex mb-4 xs6 md3 pa-3>
         <v-combobox v-model="selCousins" :items="cousins" multiple label="Select a cousin"></v-combobox>
       </v-flex>
