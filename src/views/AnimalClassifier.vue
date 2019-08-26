@@ -8,7 +8,7 @@
       <v-flex>
         <p
           class="subheading"
-        >Both machine learning and web-development have taken significant strides over the past few years. It's incredibly exciting when the two subjects converge, because that's where data science can reach the widest audience! When Tensorflow.js was released, I was stoked because it meant machine learning could now be performed in the browser for both training and inference. Web-developers wouldn't need to set up an API to ping a server to perform inference on data. Getting up and running wasn't too difficult because Tensorflow.js does a great job with showing examples of what's possible with the JavaScript version. The examples cover training a new model in the browser and loading an existing model that was trained in Python.</p>
+        >Both machine learning and web-development have taken significant strides over the past few years. It's incredible when the two subjects converge, because that's where data science can reach the widest audience! When Tensorflow.js was released, I was stoked because it meant machine learning could now be performed in the browser for both training and inference. Web-developers wouldn't need to set up an API and ping a server to perform inference on data. Getting up and running wasn't too difficult because Tensorflow.org does a great job sharing examples of what's possible with the JavaScript version. The examples cover training a new model in the browser and loading an existing model that was trained in Python.</p>
       </v-flex>
 
       <v-flex xs12>
@@ -31,11 +31,10 @@
       <v-flex>
         <p
           class="subheading"
-        >My wife's parents have a camera that is set up in the woods behind their house to see what animals sniffing around. I thought it would be a great opportunity to apply one of Tensorflow's pre-trained models to their video archives to detect what animals have walked by. The difficulty with this project wasn't Tensorflow, but rather, making the videos available to the model in this vue.js based single page web app. My solution was to use Amazon's S3 to store the media files, then configure CORS settings to allow access to the videos. I referenced the media file URL using the HTML video tag.</p>
-
+        >My wife's parents have a camera that is set up in the woods behind their house to see what animals are sniffing around. I thought it would be a great opportunity to apply one of Tensorflow's pre-trained models to their video archives and use object detection to identify the animals. The difficulty with this project wasn't Tensorflow and the object detection model, but rather, making the videos available to the model in this vue.js based single page web app. After a weekend of expermentiation, the solution I landed on was to use Amazon's S3 to store the media files, then configure CORS settings to allow access to the videos. I referenced the media file URL using the HTML video tag. With all of that in place, I then did a bit of work to improve the UI on mobile devices</p>
         <p
           class="subheading"
-        >When you visited this page, the model begins download. It takes about 10 seconds, but after that, the video displayed below will show bounding boxes and the animal being identified. Click "next" to view another video.</p>
+        >When you visited this page, the model began downloading. I'd love to move this downloading process over to a web worker eventually so it doesn't freeze the DOM. On a strong internet connection, the model download takes about 10 seconds, but after that, the video displayed below will show bounding boxes and the animal being identified. I have a few videos that you can cycle through by clicking the "next video" button.</p>
       </v-flex>
 
       <v-flex xs12 align-center row text-xs-center>
