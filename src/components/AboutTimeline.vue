@@ -64,7 +64,7 @@ export default {
         year: "2017",
         title: "Values in Practice",
         img: "vip-award.jpg",
-        description: "Booz Allen presented me with the highest honor as an employee, the Values in Practice Award. It's handed out to a select few people across the firm every year who display Booz Allen's purpose and values in their client work and who have had a postive influence on others within the company. The award was an will always be one of my proudest accomplishments. A validation of my contributions to date, but also motivation to keep pressing forward."
+        description: "Booz Allen presented me with the highest honor as an employee, the Values in Practice Award. It's handed out to a select few people across the firm every year who display Booz Allen's purpose and values in their client work and who have had a postive influence on others within the company. The award was and will always be one of my proudest accomplishments. A validation of my contributions to date, but also motivation to keep pressing forward."
       },
       {
         color: "orange",
