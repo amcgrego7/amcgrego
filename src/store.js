@@ -14,7 +14,7 @@ const state = {
       path: 'cousins-portfolio',
       icon: 'trending_up',
       desc: 'A family venture in stock investing',
-      title: 'The Cousins Portfolio',
+      title: "The Cousins' Portfolio",
       img: 'cousins-portfolio-thumbnail.png'
     },
     {
@@ -23,7 +23,7 @@ const state = {
       path: 'optimization',
       icon: 'time_to_leave',
       desc: 'An evolutionary algorithm in JavaScript',
-      title: 'Optimization',
+      title: 'Pack that Car',
       img: 'optimization-thumbnail.png'
     },
     {
@@ -31,8 +31,8 @@ const state = {
       date: new Date('2019/08/11').toDateString(),
       path: 'steak-analysis',
       icon: 'restaurant_menu',
-      desc: "A dashboard about Americans and steak",
-      title: 'Steak Analysis',
+      desc: "A dashboard about America's steak preferences",
+      title: 'Americans and Steak',
       img: 'steak-analysis-thumbnail.png'
     },
     {
@@ -41,7 +41,7 @@ const state = {
       path: 'animal-classifier',
       icon: 'videocam',
       desc: "Identifying animals in a video",
-      title: 'Animal Classifier',
+      title: 'Object Detection',
       img: 'animal-classifier-thumbnail.png'
     }
   ]

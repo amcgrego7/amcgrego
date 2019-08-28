@@ -2,7 +2,7 @@
   <v-container>
     <v-layout wrap>
       <v-flex xs12>
-        <h1>The Cousins Portfolio</h1>
+        <h1>The Cousins' Portfolio</h1>
       </v-flex>
 
       <v-flex>
