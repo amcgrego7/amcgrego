@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-lg>
-    <v-layout justify-center wrap>
+    <v-layout justify-left wrap>
       <v-flex xs12>
         <home-main-banner />
       </v-flex>
@@ -11,7 +11,7 @@
           data analytics and machine learning into usable web applications
         </h2>
       </v-flex>
-      <v-flex xs12 sm5 v-for="(tile, index) in tiles" :key="index">
+      <v-flex xs12 sm6 md4 v-for="(tile, index) in tiles" :key="index">
         <home-sub-banner :tile="tile" />
       </v-flex>
     </v-layout>
