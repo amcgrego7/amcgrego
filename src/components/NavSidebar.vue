@@ -4,22 +4,8 @@
   v-model="drawer"
   @update:mini-variant="false"
   fixed clipped app>
-    <v-toolbar flat class="transparent">
-      <v-list class="pa-0">
-        <v-list-tile avatar @click.stop="mini = true">
-          <router-link to="/about">
-            <v-list-tile-avatar>
-              <img src="../assets/headshot-water.jpg">
-            </v-list-tile-avatar>
-            <v-list-tile-action></v-list-tile-action>
-          </router-link>
-        </v-list-tile>
-      </v-list>
-    </v-toolbar>
 
     <v-list class="pt-0" dense>
-      <v-divider></v-divider>
-
       <v-list-tile v-for="app in apps" :key="app.title" @click.stop="mini = true">
         <v-list-tile-action>
           <router-link :to="app.path">

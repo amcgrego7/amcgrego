@@ -1,42 +1,44 @@
 <template>
-    <v-toolbar app clipped-left>
-      
-      <v-toolbar-side-icon @click.stop="updateStoreDrawer(!drawer)"></v-toolbar-side-icon>
+  <v-toolbar app clipped-left>
+    <v-toolbar-side-icon @click.stop="updateStoreDrawer(!drawer)"></v-toolbar-side-icon>
 
-      <router-link to='home'>
-        <v-toolbar-title class="headline">
-          <span class="font-weight-light">ANDREW</span>
-          <span>MCGREGOR</span>
-        </v-toolbar-title>
+    <v-toolbar-title>
+      <router-link to="home">
+        <span class="font-weight-light">ANDREW</span>
+        <span>MCGREGOR</span>
       </router-link>
-    </v-toolbar>
-
+    </v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <router-link to="/about">
+        <v-list-tile-avatar class="pt-2">
+          <img src="../assets/headshot-water.jpg" />
+        </v-list-tile-avatar>
+      </router-link>
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>
-
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 
 export default {
   computed: {
     ...mapState({
-      drawer : 'drawer'
+      drawer: "drawer"
     })
   },
   data() {
-    return {
-    }
+    return {};
   },
   created() {
-    const screenSize = ['md', 'lg', 'xl']
-    this.updateStoreDrawer(screenSize.includes(this.$vuetify.breakpoint.name))  
+    const screenSize = ["md", "lg", "xl"];
+    this.updateStoreDrawer(screenSize.includes(this.$vuetify.breakpoint.name));
   },
   methods: {
-    ...mapMutations([
-      'updateDrawer'
-    ]),
+    ...mapMutations(["updateDrawer"]),
     updateStoreDrawer(boolean) {
-      this.updateDrawer(boolean)
+      this.updateDrawer(boolean);
     }
   }
 };
