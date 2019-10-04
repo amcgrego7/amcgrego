@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar app clipped-left>
+  <v-toolbar app clipped-left height="58px">
     <v-toolbar-side-icon @click.stop="updateStoreDrawer(!drawer)"></v-toolbar-side-icon>
 
     <v-toolbar-title>
@@ -11,7 +11,7 @@
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <router-link to="/about">
-        <v-list-tile-avatar class="pt-2">
+        <v-list-tile-avatar class="mt-2">
           <img src="../assets/headshot-water.jpg" />
         </v-list-tile-avatar>
       </router-link>
@@ -49,4 +49,5 @@ a {
   text-decoration: none;
   color: #000;
 }
+
 </style>

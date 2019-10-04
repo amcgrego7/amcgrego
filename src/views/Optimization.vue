@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <v-layout wrap>
-      <div v-if="['lg', 'xl'].includes(screensize)" id="wrap"></div>
 
       <h1>Pack that car!</h1>
       <v-spacer></v-spacer>
@@ -295,20 +294,5 @@ export default {
 <style lang="css">
 .active {
   color: green;
-}
-
-#wrap:after {
-  content: "\f1b9";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  position: absolute;
-  font-size: 400px;
-  color: rgba(51, 122, 183, 0.08);
-  top: 50%;
-  left: 50%;
-  margin: -425px 0px 0 125px;
-  z-index: 0;
 }
 </style>
