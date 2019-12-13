@@ -36,7 +36,6 @@
       <v-btn xs4 @click="beginAlgorithm" color="info">Run</v-btn>
       <v-btn
         xs4
-        @click="beginAlgorithm"
         color="default"
         v-on:click="showSettings = !showSettings"
       >Settings</v-btn>

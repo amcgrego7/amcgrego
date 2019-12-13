@@ -37,6 +37,22 @@
       </v-card-title>
 
       <v-layout row wrap>
+        <v-flex xs12 md5>
+          <v-card-text class="pr-0">
+            <v-card-text class="see-through">
+              <p class="title">Related News</p>
+              <div v-for="news in stock.news">
+                <p class="caption mb-0">
+                  <a :href="news.url" target="blank">{{ news.source }}</a>
+                  | {{ news.postedMsg }}
+                </p>
+                <p class="body-1">{{ news.headline }}</p>
+              </div>
+            </v-card-text>
+          </v-card-text>
+        </v-flex>
+
+
         <v-flex xs12 md7>
           <v-card-text pa-0>
             <v-sheet color="rgba(0, 0, 0, .12)">
@@ -54,7 +70,7 @@
             </v-sheet>
           </v-card-text>
 
-          <v-card-text>
+          <v-card-text class="pt-0">
             <table>
               <thead>
                 <tr>
@@ -71,20 +87,7 @@
             </table>
           </v-card-text>
         </v-flex>
-        <v-flex xs12 md5>
-          <v-card-text>
-            <v-card-text class="see-through">
-              <p class="title">Related News</p>
-              <div v-for="news in stock.news">
-                <p class="caption mb-0">
-                  <a :href="news.url" target="blank">{{ news.source }}</a>
-                  | {{ news.postedMsg }}
-                </p>
-                <p class="body-1">{{ news.headline }}</p>
-              </div>
-            </v-card-text>
-          </v-card-text>
-        </v-flex>
+
       </v-layout>
     </v-card>
   </v-container>
