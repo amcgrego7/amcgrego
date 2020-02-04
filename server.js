@@ -5,9 +5,15 @@ var history = require('connect-history-api-fallback');
 
 
 app = express();
+
 app.use(history());
 app.use(serveStatic(__dirname + "/dist"));
 
 var port = process.env.PORT || 5000;
 app.listen(port);
 console.log('server started '+ port);
+
+// app.get('/api/lacrosse-scraper', ((req, res) => {
+//         res.send('Welcome to Make REST API Calls In Express!')
+//     })
+// )

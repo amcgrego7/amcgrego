@@ -38,7 +38,7 @@
 
       <v-layout row wrap>
         <v-flex xs12 md5>
-          <v-card-text class="pr-0">
+          <v-card-text>
             <v-card-text class="see-through">
               <p class="title">Related News</p>
               <div v-for="news in stock.news">
@@ -96,6 +96,11 @@
 <script>
 export default {
   props: ["stock", "screensize"],
+  computed : {
+    screenPadding() {
+      return this.screensize === 'xs'
+    }
+  }
 };
 </script>
 
