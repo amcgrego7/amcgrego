@@ -245,6 +245,46 @@ export default {
               percent: 0.16
             }
           ]
+        },
+        {
+          company: 'AIRBNB',
+          symbol: 'ABNB',
+          news: [],
+          changePercent: null,
+          purchases: [
+            {
+              date: '20210111',
+              shares: 1,
+              price: 149.77
+            }
+          ],
+          price: 0,
+          owners: [
+            {
+              name: 'Levi',
+              percent: 0.16
+            },
+            {
+              name: 'Harrison',
+              percent: 0.16
+            },
+            {
+              name: 'Hannah',
+              percent: 0.16
+            },
+            {
+              name: 'Evie',
+              percent: 0.16
+            },
+            {
+              name: 'Jacob',
+              percent: 0.16
+            },
+            {
+              name: 'Abby',
+              percent: 0.16
+            }
+          ]
         }        
       ]
     };
