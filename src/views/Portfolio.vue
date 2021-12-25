@@ -114,8 +114,56 @@ export default {
   data() {
     return {
       selCousins: [], // Updated by filter selection
-      cousins: ['Levi', 'Harrison', 'Hannah', 'Evie', 'Jacob', 'Abby'], // List all cousins
+      cousins: ['Levi', 'Harrison', 'Hannah', 'Evie', 'Jacob', 'Abby', 'Wells', 'Brodie'], // List all cousins
       allStocks: [
+        {
+          company: 'APPLE',
+          symbol: 'AAPL',
+          news: [],
+          changePercent: null,
+          purchases: [
+            {
+              date: '20211228',
+              shares: 1,
+              price: 176.32
+            }
+          ],
+          price: 0,
+          owners: [
+            {
+              name: 'Levi',
+              percent: 0.125
+            },
+            {
+              name: 'Harrison',
+              percent: 0.125
+            },
+            {
+              name: 'Hannah',
+              percent: 0.125
+            },
+            {
+              name: 'Evie',
+              percent: 0.125
+            },
+            {
+              name: 'Jacob',
+              percent: 0.125
+            },
+            {
+              name: 'Abby',
+              percent: 0.125
+            },
+                        {
+              name: 'Wells',
+              percent: 0.125
+            },
+            {
+              name: 'Brodie',
+              percent: 0.125
+            }
+          ]
+        },  
         {
           company: 'Facebook',
           symbol: 'FB',
@@ -144,6 +192,7 @@ export default {
             }
           ]
         },
+
         {
           company: 'Microsoft',
           symbol: 'MSFT',
