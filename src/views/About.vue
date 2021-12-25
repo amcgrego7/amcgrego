@@ -27,15 +27,15 @@
         </h1>
         <v-divider/>
         <p class="pt-3">
-        I am a business analytics consultant at Booz Allen Hamilton. I love tackling data wrangling challenges and building web applications!
+        I am an Analytics and Insights Manager consultant at Procter & Gamble. I lead the design and execution of our data strategy for our P&G team with the goal of enabling market growth for our retail partners.
         </p>
-        <p mt-3>I began building this website knowing it would encourage me to dive into the latest trends in web-development and analytics. A result of hobby projects, personal development, and on the job training, I've become comfortable with...
+        <p mt-3>I began building this website in 2018 knowing it would encourage me to dive into the latest trends in web-development and analytics. A result of hobby projects, personal development, and on the job training, I've become comfortable with...
         </p>
         <p>
         <ul>
-          <li>Web-development: Node.js, JavaScript, Vue.js, d3.js, Python, Django and Bootstrap </li>
+          <li>Web-development: Node.js, JavaScript, Vue.js, d3.js, Python and Databricks </li>
           <li>Machine Learning: TensorFlow, SciKit Learn, Reinforcement Learning and Optimization</li>
-          <li>Data Analytics: Tableau, PostgreSQL, Excel and Access</li>
+          <li>Data Analytics: Tableau, PowerBI, SQL and Excel</li>
         </ul>
         </p>
       </v-flex>
