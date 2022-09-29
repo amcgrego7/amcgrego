@@ -15,7 +15,7 @@
     "axios": ">=0.18.0",
     "babel-polyfill": "^6.26.0",
     "connect-history-api-fallback": "^1.6.0",
-    "d3": "^5.9.7",
+    "d3": "^7.6.1",
     "express": "^4.16.4",
     "gsap": "^2.0.2",
     "topojson-client": "^3.0.0",
