@@ -163,7 +163,55 @@ export default {
               percent: 0.125
             }
           ]
-        },  
+        },
+        {
+          company: 'Dutch Bros',
+          symbol: 'BROS',
+          news: [],
+          changePercent: null,
+          purchases: [
+            {
+              date: '20221223',
+              shares: 7,
+              price: 29.82
+            }
+          ],
+          price: 0,
+          owners: [
+            {
+              name: 'Levi',
+              percent: 0.125
+            },
+            {
+              name: 'Harrison',
+              percent: 0.125
+            },
+            {
+              name: 'Hannah',
+              percent: 0.125
+            },
+            {
+              name: 'Evie',
+              percent: 0.125
+            },
+            {
+              name: 'Jacob',
+              percent: 0.125
+            },
+            {
+              name: 'Abby',
+              percent: 0.125
+            },
+                        {
+              name: 'Wells',
+              percent: 0.125
+            },
+            {
+              name: 'Brodie',
+              percent: 0.125
+            }
+          ]
+        },        
         {
           company: 'Facebook',
           symbol: 'FB',

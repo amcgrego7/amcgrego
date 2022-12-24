@@ -27,7 +27,7 @@
         </h1>
         <v-divider/>
         <p class="pt-3">
-        I am an Analytics and Insights Manager consultant at Procter & Gamble. I lead the design and execution of our data strategy for our P&G team with the goal of enabling market growth for our retail partners.
+        I am an Analytics and Insights Director at Procter & Gamble. I lead the design and execution of our data strategy for our P&G team with the goal of enabling market growth for our retail partners.
         </p>
         <p mt-3>I began building this website in 2018 knowing it would encourage me to dive into the latest trends in web-development and analytics. A result of hobby projects, personal development, and on the job training, I've become comfortable with...
         </p>

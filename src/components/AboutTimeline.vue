@@ -78,7 +78,7 @@ export default {
         year: "2020",
         title: "P&G + Me",
         img: "pg-logo.jpg",
-        description: "After 6 years in government consulting, I had become curious about the opportunities within the private sector. I joined P&G as an Analytics & Insights manager to lead the data strategy for our P&G sales team that is dedicated to a Fortune 200 retailer. The speed at which we operate, and the culture of experimentation has been a spark for me to learn and grow."
+        description: "After 6 years in government consulting, I had become curious about the opportunities within the private sector. I joined P&G as an Analytics & Insights leader for a P&G sales team dedicated to a fortune 200 company. The speed at which we operate, and the culture of experimentation has been a spark for me to learn and grow."
       }
 
     ]
