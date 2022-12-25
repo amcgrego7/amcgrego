@@ -82,7 +82,7 @@
               <tr v-for="owner in stock.owners">
                 <td>{{ owner.name}}</td>
                 <td>{{ (owner.percent * 100).toFixed(0) + '%'}}</td>
-                <td>{{ '$ ' + (owner.percent * stock.price ).toFixed(2)}}</td>
+                <td>{{ '$ ' + (owner.percent * stock.price * stock.purchases[0].shares ).toFixed(2)}}</td>
               </tr>
             </table>
           </v-card-text>
