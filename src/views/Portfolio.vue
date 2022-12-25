@@ -213,8 +213,8 @@ export default {
           ]
         },        
         {
-          company: 'Facebook',
-          symbol: 'FB',
+          company: 'Meta',
+          symbol: 'META',
           news: [],
           purchases: [
             {
