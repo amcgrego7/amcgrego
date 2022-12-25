@@ -2,6 +2,9 @@
   "name": "amcgrego",
   "version": "0.1.0",
   "private": true,
+  "engines" : { 
+    "node" : "8.11.4"
+  },
   "scripts": {
     "serve" : "vue-cli-service serve",
     "express-serve": "concurrently --kill-others-on-fail \"node server.js\" \"vue-cli-service serve\"",
