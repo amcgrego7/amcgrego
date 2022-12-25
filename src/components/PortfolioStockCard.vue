@@ -62,6 +62,7 @@
               <div color="white" class="caption text-uppercase pl-3 pt-3">3 Months</div>
               <v-sparkline
                 :value="stock.qtrValues"
+                auto-draw
                 color="rgba(255, 255, 255, .7)"
                 height="100"
                 padding="24"
