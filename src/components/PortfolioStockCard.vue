@@ -13,12 +13,14 @@
           </v-flex>
           <v-flex>
             <p class="mb-2">{{ stock.company }}</p>
-            <p class="title">{{ stock.symbol }}</p>
+            <p class="body">{{ stock.symbol }}</p>
           </v-flex>
         </v-layout>
         <v-flex xs12 sm5 class="headline text-xs-left text-sm-right">
-          <p class="mb-0">{{ '$ ' + stock.price.toFixed(2) }}</p>
-
+          <div>
+            <p class="mb-0" style="display:inline">{{ '$ ' + stock.price.toFixed(2) * stock.purchases[0].shares }} </p>
+            <p style="display:inline" class="caption">{{ "(" + stock.purchases[0].shares + ( + stock.purchases[0].shares > 1 ? " shares" : " share") + ")" }} </p>
+          </div>
           <v-chip
             class="ml-0"
             label
@@ -34,6 +36,7 @@
             {{ (stock.changePercent * 100).toFixed(2) }}% today
           </v-chip>
         </v-flex>
+
       </v-card-title>
 
       <v-layout row wrap>

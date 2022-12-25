@@ -240,7 +240,34 @@ export default {
             }
           ]
         },
-
+        {
+          company: 'Bank of America',
+          symbol: 'BAC',
+          news: [],
+          changePercent: null,
+          purchases: [
+            {
+              date: '20180917',
+              shares: 1,
+              price: 30.85
+            }
+          ],
+          price: 0,
+          owners: [
+            {
+              name: 'Levi',
+              percent: 0.5
+            },
+            {
+              name: 'Harrison',
+              percent: 0.25
+            },
+            {
+              name: 'Hannah',
+              percent: 0.25
+            }
+          ]
+        },
         {
           company: 'Microsoft',
           symbol: 'MSFT',
@@ -275,34 +302,7 @@ export default {
           ]
         },
 
-        {
-          company: 'Bank of America',
-          symbol: 'BAC',
-          news: [],
-          changePercent: null,
-          purchases: [
-            {
-              date: '20180917',
-              shares: 1,
-              price: 30.85
-            }
-          ],
-          price: 0,
-          owners: [
-            {
-              name: 'Levi',
-              percent: 0.5
-            },
-            {
-              name: 'Harrison',
-              percent: 0.25
-            },
-            {
-              name: 'Hannah',
-              percent: 0.25
-            }
-          ]
-        },
+
         {
           company: 'WIX.com',
           symbol: 'WIX',
@@ -422,16 +422,17 @@ export default {
           const len = response.data[symbol].chart.length;
           _stock['qtrValues'] = response.data[symbol].chart.reduce(function(filtered, option, idx) {
             // If index by 9 we keep the value
-            const isInteger = Number.isInteger((idx + 9) / 9);
-            if (isInteger) {
-              filtered.push(Number(option.close.toFixed(0)));
+            // const isInteger = Number.isInteger((idx + 9) / 9);
+            // if (isInteger) {
+            //   filtered.push(Number(option.close.toFixed(0)));
 
-              // Or if it's the last item, include it
-            } else if (idx === len - 1) {
-              filtered.push(Number(option.close.toFixed(0)));
-            }
+            //   // Or if it's the last item, include it
+            // } else if (idx === len - 1) {
+            //   filtered.push(Number(option.close.toFixed(0)));
+            // }
+            filtered.push(Number(option.close.toFixed(2)))
             return filtered;
-          }, []);
+          }, []).reverse();
 
           // Format the news time stamp
           _stock['news'] = response.data[symbol].news.map(item => {
